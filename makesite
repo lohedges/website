@@ -182,7 +182,7 @@ echo "</div>" >> $build_dir/menu.html
 echo "<div id=\"menu\">" >> $build_dir/menu.html
 echo "<div id=\"content\">" > $build_dir/map_template.html
 echo "<h2 class=\"top\">Site map</h2>" >> $build_dir/map_template.html
-echo "	<ul>" >> $build_dir/map.html
+echo "	<ul>" >> $build_dir/map_template.html
 echo "		<li><a href=\"./\">Home page</a></li>" >> $build_dir/map_template.html
 
 if [ ${#pages[@]} -gt 0 ]; then
@@ -387,7 +387,16 @@ for page in ${pages[@]}; do
 done
 
 # Create site map.
+page="map"
 create_page $build_dir/map.html $build_dir/map_template.html
+
+title=$main_title/map
+if [ "$1" = "local" ]; then
+	replace_tokens $build_dir/map.html 1
+else
+	replace_tokens $build_dir/map.html 0
+fi
+
 echo "    $build_dir/map.html"
 
 echo "Deleting temporary build files ..."
