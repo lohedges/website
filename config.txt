@@ -1,0 +1,9 @@
+local_host="http://localhost/~lester/"
+remote_host="http://lesterhedges.net/"
+main_title=lesterhedges.net
+keywords="Lester Hedges, self-assembly, nucleation, glasses, LBL, LBNL, Lawrence, Berkeley, Nottingham, Bath, simulations, monte carlo"
+author="Lester Hedges"
+font='http://fonts.googleapis.com/css?family=Poly:400,400italic|Bitter:700'
+index="Lester O. Hedges' website"
+github="https://github.com/lohedges"
+resume="LesterHedgesResume.pdf"

@@ -1,0 +1,115 @@
+<h2 class="top">LaTuXiT</h2>
+
+<p>
+If you've ever given a scientific presentation using OS X, chances are you've run across a very handy program
+called <a href="http://www.chachatelier.fr/latexit/">LaTeXiT</a>. This utility allows you to create nicely cropped
+LaTeX typset equations that can be dragged and dropped into slides. A nice feature is the use of an equation library,
+allowing the user to keep track of their LaTeXiT history, make modifications to existing equations, and share equations
+between computers. Even neater is the LinkBack feature that allows image files that have been generated with LaTeXiT
+to be re-opened for editing when they are dragged back into the application. That way you can drag an equation from a
+Keynote slide into LaTeXiT, make some edits, then drag the new image back into the slide. This is really handy when you
+make mistakes, or when dealing with lots of equations with slight variations.
+</p>
+
+<p>
+There isn't anything quite so slick for Linux, at least anything that functions as a stand-alone package. There is
+<a href="http://userbase.kde.org/KFormula">KFormula</a>, but this is now part of the Calligra suite (formerly KOffice).
+Since I don't use KDE or Calligra, and don't want to pull a bunch of unwanted dependencies, I decided to write something
+a little more lightweight.
+</p>
+
+<p>
+My solution, <a href="https:github.com/lohedges/latuxit">LaTuXiT</a>, a simple Bash script that requires no
+dependencies outside of the standard <a href="http://www.tug.org/texlive/">Tex Live</a> core (other than
+<a href="http://www.ghostscript.com/">Ghostscript</a> for additional PostScript support). The script replicates two
+of LaTeXiT's key features: an equation library, and a link back feature to allow editing of existing equations.
+LaTuXiT	works by hashing each equation string and building a cache. Metadata written as comments in the output
+pdf and postscript images allows LaTuXiT to match an image to an equation in the cache. LaTuXiT has full RGB color
+support and also accepts any of the 68 standard colors known to dvips. For more details on the workings of LaTuXiT,
+please visit its <a href="https:github.com/lohedges/latuxit">GitHub</a> page.
+</p>
+
+<h2 class="top">Basic usage</h2>
+
+<p>
+Suppose we want a nice red image of the canonical partition function... here's a short example of a possible LaTuXiT workflow.
+</p>
+
+<samp>
+$ latuxit -e "Z=\sum_s e^{\beta E_s}" -c "Red"
+</samp>
+
+<p>
+There should now be two files in the working directory: latuxit.pdf, and latuxuit.ps. Let's open latuxit.pdf and see what it
+looks like.
+</ps>
+
+<center>
+<div class="fullimage">
+	<img src="http://i179.photobucket.com/albums/w319/scratchmandoo/website/code/latuxit/partition_1_zps330dea8e.png" width="200" alt="LaTuXit output equation" /></a>
+</div>
+</center>
+
+<p>
+Whoops, it looks like we missed a minus sign, and how about we make the equation green instead.
+The following command will extract equation metadata from <code>latuxit.pdf</code> and open the
+equation in an editor where it can be corrected. Easy!
+<p>
+
+<samp>
+$ latuxit latuxit.pdf -c "{102,255,0}"
+</samp>
+
+<p>
+Let's check the modified image. Snazzy.
+</p>
+
+<center>
+<div class="fullimage">
+	<img src="http://i179.photobucket.com/albums/w319/scratchmandoo/website/code/latuxit/partition_2_zpseedb3cab.png" width="220" alt="Modified LaTuXit output equation" /></a>
+</div>
+</center>
+
+<h2 class="top">Searching the equation cache</h2>
+
+<p>
+Suppose you want to edit an equation but you've lost the image file. You can kind of remember the syntax, but it's
+long and complicated so you don't really fancy attempting to type it out again. What do you do then?
+</p>
+
+<p>
+Thankfully LaTuXiT offers a solution. As a starting point you could simply get LaTuXiT to list all of the equations
+in the cache and use grep to look for matches.
+</p>
+
+<samp>
+$ latuxit -l | grep "sin"<br>
+abade05b27e49e91c5873deabb8f82f2 "\cos^2 x +\sin^2 x = 1"<br>
+ee8ff71994abccb0897510910c944468 "\sin 2\theta = 2\sin \theta \cos \theta"
+</samp>
+
+<p>
+Note that this is equivalent to running LaTuXiT in "search" mode, i.e.
+</p>
+
+<samp>
+$ latuxit -s "sin"
+</samp>
+
+<p>
+The two column output shows a list of matching hashes from the cache and the corresponding equations.
+Say the first match is the equation that we want. To reprocess it we can simply run LaTuXiT in <code>hash</code> mode.
+The hash string that is passed as a command-line argument should be long enough to ensure a unique match.
+LaTuXiT will abort if multiple matches are found. The equation will be opened in an editor so that it can be modified
+prior to processing.
+</p>
+
+<samp>
+$ latuxit -m "abad"
+</samp>
+
+<center>
+<div class="fullimage">
+	<img src="http://i179.photobucket.com/albums/w319/scratchmandoo/website/code/latuxit/pythag_zps2a141f16.png" width="220" alt="An equation regenerated using LaTuXiT's hash mode." /></a>
+</div>
+</center>

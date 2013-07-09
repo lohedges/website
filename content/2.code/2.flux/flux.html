@@ -1,0 +1,103 @@
+<h2 class="top">Flux</h2>
+
+<p>
+Like its sister program <a href="code/rectify">rectify</a>, flux uses a simple Monte Carlo algorithm to converge
+towards a target image. This time the algorithm starts from a randomization of the target and progresses by
+choosing, at random, two nearest-neighbor pixels and attempting to swap their RGBA (red, green, blue, alpha) values.
+Once again, a simple Metropolis acceptance rule is used to determine whether the trial pixel swap is kept.
+<p>
+
+<p>
+The algorithm results in the flow of pixels across the canvas as they attempt to find their optimal target location.
+The resulting images bear some resemblance to iron filings being manipulated by an external magnetic field.
+</p>
+
+<p>
+Full details can be found on the flux <a href="https:github/lohedges/flux">GitHub</a> page.
+</p>
+
+<h2 class="top">Installation</h2>
+
+<p>
+The code can be downloaded and installed as follows:
+</p>
+
+<samp>
+$ git clone git@github.com:lohedges/flux.git<br>
+$ cd flux<br>
+$ make <br>
+$ sudo make install
+</samp>
+
+<h2 class="top">Examples</h2>
+
+<p>
+To get started there are a few test images included in the <code>examples</code> folder. Running flux as
+shown below converges towards a target image of Manhattan, NYC. The program executes 10 thousand Monte Carlo sweeps
+and saves a total of 1000 images at logarithmically spaced intervals. All of the output is saved to a directory
+called <code>nyc</code>, which will be created if it doesn't already exist.
+</p>
+
+<samp>
+$ cd examples<br>
+$ flux nyc.png -d nyc -i 10000 -f 1000 -l
+</samp>
+
+<p>
+The following short movie shows the output of the program. A striking high contrast cityscape appears out of random noise.
+<p>
+
+<center>
+<div>
+	<div class="sites-embed-align-center-wrapping-off">
+		<div class="sites-embed-border-on sites-embed" style="width:425px;">
+			<div class="sites-embed-content sites-embed-type-youtube">
+				<iframe width="435" height="355" src="http://www.youtube.com/embed/XTIppYJyZIs?rel=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+</center>
+
+<p>
+As another example, try running flux on the zebra photograph included in the <code>examples</code> directory.
+The movie below shows an example of the program output.
+</p>
+
+<samp>
+$ flux zebra.png -d zebra -i 100000 -f 1000 -l
+</samp>
+
+<center>
+<div>
+	<div class="sites-embed-align-center-wrapping-off">
+		<div class="sites-embed-border-on sites-embed" style="width:425px;">
+			<div class="sites-embed-content sites-embed-type-youtube">
+				<iframe width="435" height="355" src="https://www.youtube.com/embed/Sc9z0vfQrlg?rel=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+</center>
+
+<p>
+Flux can also be run in <code>reverse</code> mode. Here the program starts from the target image and converges towards
+a fully randomized state. It's cool to watch the image slowly dissolve; it's almost as if the pixels have become detached from
+the canvas and then been blown away.
+</p>
+
+<samp>
+$ flux zebra.png -d zebra_reverse -i 100000 -f 1000 -l -r
+</samp>
+
+<center>
+<div>
+	<div class="sites-embed-align-center-wrapping-off">
+		<div class="sites-embed-border-on sites-embed" style="width:425px;">
+			<div class="sites-embed-content sites-embed-type-youtube">
+				<iframe width="435" height="355" src="https://www.youtube.com/embed/MrdwOzhEC7I?rel=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+</center>

@@ -1,0 +1,93 @@
+<h2 class="top">Rectify</h2>
+
+<p>
+Since a my research involves a lot of Monte Carlo (MC) simulation, I thought that it might be fun to
+make use of some of the algorithms in a somewhat different context. The result is two simple command-line utilities,
+<a href="https:github.com/lohedges/rectify">rectify</a> and <a href="https:github.com/lohedges/flux">flux</a>,
+that use Monte Carlo processes to generate digital artwork.
+<p>
+
+<p>
+Rectify starts with a blank canvas and converges towards a target image by applying a sequence of random rectangular
+black or white brush strokes. The strokes are blended with the existing pixels on the canvas and the trial is
+accepted or rejected according to a Metropois acceptance rule: moves that result in the canvas looking more like
+the target image are always accepted, while a thermal bath controls the probabilility of accepting moves that make the
+canvas less like the target.
+</p>
+
+<p>
+The code works with Portable Network Graphics (PNG) images and uses <a href="http://lodev.org/lodepng/">LodePNG</a> to avoid
+unneccessary dependency on libpng and zlib. All that's needed in order to compile the code is a recent version of
+<a href="http://gcc.gnu.org/">gcc</a>. As a result it should be fairly self-contained and portable.
+</p>
+
+<p>
+There are several options that the user can tweak, such as the maximum size of the trial brush stroke, the number of MC iterations
+to execute, and the number of images to save as the algorithm progresses. Full details can be found on the rectify
+<a href="https:github/lohedges/rectify">GitHub</a> page.
+</p>
+
+<h2 class="top">Installation</h2>
+
+<p>
+The code can be downloaded and installed as follows:
+</p>
+
+<samp>
+$ git clone git@github.com:lohedges/rectify.git<br>
+$ cd rectify<br>
+$ make <br>
+$ sudo make install
+</samp>
+
+<h2 class="top">Examples</h2>
+
+<p>
+To get started there are a few test images included in the <code>examples</code> folder. Running rectify as
+shown below converges towards a target image of Manhattan, NYC. The program executes 10 million trial brush strokes
+and saves a total of 1000 images at logarithmically spaced intervals. All of the output is saved to a directory
+called <code>nyc</code>, which will be created if it doesn't already exist.
+</p>
+
+<samp>
+$ cd examples<br>
+$ rectify nyc.png -d nyc -i 10000000 -f 1000 -l
+</samp>
+
+<p>
+The following short movie shows the output of the program. Watch how ghostly buildings appear from the blank canvas as the
+algorithm progresses.
+<p>
+
+<center>
+<div>
+	<div class="sites-embed-align-center-wrapping-off">
+		<div class="sites-embed-border-on sites-embed" style="width:425px;">
+			<div class="sites-embed-content sites-embed-type-youtube">
+				<iframe width="435" height="355" src="http://www.youtube.com/embed/w1dSrFeppZ4?rel=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+</center>
+
+<p>
+Also included in the <code>examples</code> folder is a photograph of a zebra. Try running the following command,
+the movie shows an example of the resulting output.
+</p>
+
+<samp>
+$ rectify zebra.png -d zebra -i 1000000 -f 1000 -l
+</samp>
+
+<center>
+<div>
+	<div class="sites-embed-align-center-wrapping-off">
+		<div class="sites-embed-border-on sites-embed" style="width:425px;">
+			<div class="sites-embed-content sites-embed-type-youtube">
+				<iframe width="435" height="355" src="https://www.youtube.com/embed/JMfv0bvxySk?rel=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+</center>

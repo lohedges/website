@@ -1,0 +1,120 @@
+<h2 class="top">PostScript</h2>
+
+<p>
+There are many annoying trade-offs that are faced when making figures for scientific publication, and
+these are only exacerbated by the myriad of conflicting and confusing journal guidelines. For example,
+a journal may only allow four or five figures, a restriction that inevitably leads to the use of
+multi-panel compound figures in order to try to squeeze the maximum amount of information into as smaller
+space as possible (sometimes as much as three or four figures worth of material). Unsurprisingly,
+this compaction of information can lead to significant problems with figure clarity and legibility.
+</p>
+
+<p>
+An obvious solution is the use of <a href="http://en.wikipedia.org/wiki/Vector_graphics">vector graphics</a>.
+<a name="footnote1_reverse"></a><a href="misc/postscript/#footnote1"><sup>&dagger;</sup></a>
+Here the author can strive to make the figure as clear as possible at the print scale, safe in the knowledge that
+anyone reading the digital copy (and to be honest, who isn't doing this in 2013) can scale up the image to their
+heart's content without any loss in quality. I cannot emphasize enough just how useful vector graphics are for
+my own work. When I need to convey detailed information about the spatial organization of atoms or molecules
+in my model systems, scalability allows me to provide information regarding both the small and large length
+scale behavior of the system in the same image, both of which may be fundamental to the underlying physics.
+For example, while the entire image gives a sense of the structure of atoms and molecules at the system scale,
+zooming in allows the reader to discern local particle arrangements or bonding motifs. Having access to full
+information at all scales is truly invaluable.
+</p>
+
+<p>
+One problem with such a detailed graphical representation is that file sizes can quickly become rather large.
+A vector representation of a molecular system requires coordinates for all of the atoms in the system (which
+can be on the order of hundreds to thousands) as well as instructions for drawing the primitives out of which
+they are built. Journals typically place restrictions on figure file sizes and will either reject your image
+if it is too large, or silently rasterize it leading to a marked reduction in quality.
+<a name="footnote2_reverse"></a><a href="misc/postscript/#footnote2"><sup>&Dagger;</sup></a>
+Now we get to the crux of the problem: how do you produce a beautiful, scalable, vector image of a molecular
+system while keeping the file size to a minimum?  Enter <a href="http://en.wikipedia.org/wiki/PostScript">PostScript</a>.
+</p>
+
+<p>
+Despite having used PostScript for many years, in my ignorance I wasn't fully aware of what it was. It was only
+when working with a collaborator that I realized that it wasn't simply a vector image format, but rather a fully
+fledged programming language (I guess the clue was partially in the name, alas). A PostScript image is simply a plain
+text file containing a list of function definitions and instructions to be processed by a PostScript interpreter,
+such as <a href="http://www.ghostscript.com/">Ghostscript</a>. This was a real eye opener for me. Since PostScript
+allowed me to define my own functions for all of the primitive objects in an image, I was effectively a granted
+a level of control over compression through judicious choice of function names and coordinate precision.
+</p>
+
+<p>
+As an example, consider this simple PostScript function for drawing a filled circle:
+</p>
+
+<samp>
+/c {<br>
+	0 0 3.0 0 360 arc<br>
+	setrgbcolor<br>
+	fill<br>
+} def
+</samp>
+
+<p>
+Don't worry too much about the syntax, the point is that we now have a function to draw a filled
+circle of any color that can be addressed by a single letter, <code>c</code>. This definition comes at the
+top of our PostScript image file. If we wanted to draw a red circle centered at (10,10) we would
+add the following instruction to the PostScript file.
+</p>
+
+<samp>
+10 10 tr 1.0 0.0 0.0 c
+</samp>
+
+<p>
+The first part of the instruction translates the origin of the coordinate system to (10,10),
+the second part calls the circle function passing the RGB color values as operands. In this way,
+an entire image can be generated using a sequence of commands for drawing the shapes of each molecule
+in the system. While extreme precision might be needed to preserve numerical stability when saving
+particle configurations to restart files, for visualization purposes it should be perfectly acceptable
+to output atomic coordinates to two decimal places. This can dramatically reduce the size of the PostScript
+file without any noticeable difference to the output. If the vector primitives only require fixed colors then
+this can be absorbed into the function itself, e.g. we would be able to draw a circle by just writing <code>c</code>.
+</p>
+
+<p>
+The following is an example of the type of beautiful image that is easy to generate with PostScript.
+It shows a configuration from a statistical-mechanical model of a <a href="http://en.wikipedia.org/wiki/Thylakoid">grana</a>
+stack, which is part of the photosynthetic light-harvesting system. Obviously, for inclusion on the web, this is a poor
+quality PNG raster. A PostScript version can be found <a href="misc/postscript/grana.ps">here</a>. Note that the vector version is
+around seven times smaller than the PNG raster!
+</p>
+
+<center>
+<div class="fullimage">
+	<img src="http://i179.photobucket.com/albums/w319/scratchmandoo/website/misc/postscript/grana_zps32203007.png" width="400" alt="A statistical-mechanical model of a grana layer" />
+</div>
+</center>
+
+<p>
+In summary: PostScript is fun, and is a fantastic tool for producing modestly sized, publication quality
+figures. Since PostScript images are plain text files they can be trivially generated from any program
+with no need for any external libraries or additional dependencies. Moreover, Adobe (the developer) has
+several excellent resources for learning the language that are freely available on its website and elsewhere.
+These are commonly referred to as the red and blue books. Another excellent book is Learning PostScript:
+A Visual Approach, by Ross Smith. The book is out of print but copies are easy to find on Amazon. Links below.
+</p>
+
+<div class="gimage">
+	<a href="http://www.adobe.com/products/postscript/pdfs/PLRM.pdf"><img src="http://www.inkguides.com/images/postscript_pictures/RedBook.gif" width=120" alt="The PostScript Red book"></a>
+	<a href="http://www-cdf.fnal.gov/offline/PostScript/BLUEBOOK.PDF"><img src="http://www.inkguides.com/images/postscript_pictures/BlueBook.gif" width=118" alt="The PostScript Blue book"></a>
+	<a href="http://www.amazon.com/Learning-Postscript-A-Visual-Approach/dp/0938151126"><img src="http://img.getglue.com/books/learning_postscript_visual_approach/ross_smith/normal.jpg" width=115" alt="Learning PostScript: A Visual Approach"></a>
+</div>
+
+<ul style="list-style: none;">
+	<li><a name="footnote1"></a><a href="misc/postscript/#footnote1_reverse"><sup>&dagger;</sup></a>
+	Remarkably, in 2013, many journals still don't fully support vector graphics (along with numerous other things).
+	Some will insists that you send them "high-res" TIFF files bordering on gigabytes in size. Others will simply
+	<a href="http://en.wikipedia.org/wiki/Rasterisation">rasterize</a> your beautiful vector images with no
+	word of warning. Watch out!</li>
+	<li><a name="footnote2"></a><a href="misc/postscript/#footnote2_reverse"><sup>&Dagger;</sup></a>
+	File size restrictions used to be a major burden when submitting a preprint to the
+	<a href="http://arxiv.org">arXiv</a>. I remember having to go through many revisions before finally getting
+	under that magic 1.4Mb limit (total). Thankfully they've relaxed this.</li>
+</ul>
