@@ -66,7 +66,7 @@ function create_page {
 # Replace tokens in html page:
 #	$1 = page name
 function replace_tokens {
-	# Account for different sed behavior on OS X.
+	# Account for different sed behavior on OS X and FreeBSD.
 	if [ "$os_name" = "Darwin" ] || [ "$os_name" = "FreeBSD" ]; then
 		if [ $2 -eq 1 ]; then
 			sed -i "" "s#_BASE#${local_host}#g" $1
@@ -329,7 +329,7 @@ for page in ${pages[@]}; do
 	# Generate page title string.
 	title=$main_title/$page
 
-	if [[ "$1" -eq "local" ]]; then
+	if [ "$1" = "local" ]; then
 		replace_tokens $build_dir/$page/index.html 1
 	else
 		replace_tokens $build_dir/$page/index.html 0
@@ -365,7 +365,7 @@ for page in ${pages[@]}; do
 			# Generate subpage title string.
 			title=$main_title/$page/$subpage
 
-			if [[ "$1" -eq "local" ]]; then
+			if [ "$1" = "local" ]; then
 				replace_tokens $build_dir/$page/$subpage/index.html 1
 			else
 				replace_tokens $build_dir/$page/$subpage/index.html 0
