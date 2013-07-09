@@ -28,8 +28,8 @@ elif [[ "$1" != "local" && "$1" != "remote" ]]; then
 fi
 
 # Define defaults.
-local_host="http://localhost/~lester"
-remote_host="http://lesterhedges.net"
+local_host="http://localhost/~lester/"
+remote_host="http://lesterhedges.net/"
 font='http://fonts.googleapis.com/css?family=Poly:400,400italic|Bitter:700'
 
 # Get name of operating system.
