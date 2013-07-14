@@ -1,6 +1,6 @@
 # lesterhedges.net
 
-Copyright 2013 Lester Hedges.
+Copyright &copy; 2013 Lester Hedges.
 
 ## About
 This is the repo for my personal website, [lesterhedges.net](http://lesterhedges.net).
