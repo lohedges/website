@@ -235,6 +235,9 @@ for page in ${pages[@]}; do
 			# Add to subpage to build directory.
 			mkdir $build_dir/$page/$subpage
 
+			# set default link name
+			name="${subpage^}"
+
 			# Source subpage configuation.
 			if [ -f content/[0-9].$page/[0-9].$subpage/$subpage.config ]; then
 				source content/[0-9].$page/[0-9].$subpage/$subpage.config
@@ -243,7 +246,7 @@ for page in ${pages[@]}; do
 			fi
 
 			# Add menu and map page entries.
-			echo "			<li><a href=\"$page/$subpage\">${subpage^}</a></li>" >> $build_dir/menu.html
+			echo "			<li><a href=\"$page/$subpage\">$name</a></li>" >> $build_dir/menu.html
 			echo "			<li><a href=\"$page/$subpage\">$description</a></li>" >> $build_dir/map_template.html
 		done
 
