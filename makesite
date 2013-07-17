@@ -126,18 +126,6 @@ else
 fi
 echo " Done"
 
-# Copy assets to build directory.
-echo -n " Checking for assets..."
-if [ -d content/assets ]; then
-	if [ "$(ls -A content/assets)" ]; then
-		echo " Found"
-		for i in $(ls content/assets); do
-			cp -r content/assets/$i $build_dir
-			echo "    copied assets/$i to $build_dir/"
-		done
-	fi
-fi
-
 # Check for template files.
 echo -n "Checking for template files ..."
 for template in ${templates[@]}; do
@@ -168,6 +156,18 @@ if [ ! -f content/homepage.html ]; then
 	exit 1
 fi
 echo " Found"
+
+# Copy assets to build directory.
+echo -n "Checking for assets..."
+if [ -d content/assets ]; then
+	if [ "$(ls -A content/assets)" ]; then
+		echo " Found"
+		for i in $(ls content/assets); do
+			cp -r content/assets/$i $build_dir
+			echo "    copied assets/$i to $build_dir/"
+		done
+	fi
+fi
 
 # Build map of website structure.
 echo "Determing website structure ..."
