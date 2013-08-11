@@ -19,7 +19,7 @@ Content is managed through a series of simple files and folders. The basic set
 up is as follows:
 
 ### `config.txt`
-This is the main configuration files which contains a bunch of variables that
+This is the main configuration file which contains a bunch of variables that
 are sourced by the `makesite` script on startup. Have a look at the file for
 details.
 
