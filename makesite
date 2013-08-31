@@ -265,7 +265,12 @@ if [[ -n "$github" ]]; then
 	echo "		<li id=\"m_github\"><a href=\"$github\">GitHub</a></li>" >> $build_dir/menu.html
 fi
 if [[ -n "$resume" ]]; then
-	echo "		<li id=\"m_resume\"><a href=\"$resume\">R&eacute;sum&eacute;</a></li>" >> $build_dir/menu.html
+	# check resume file exists
+	if [ -f $build_dir/$resume ]; then
+		echo "		<li id=\"m_resume\"><a href=\"$resume\">R&eacute;sum&eacute;</a></li>" >> $build_dir/menu.html
+	else
+		echo "Warning: Resume file not found!"
+	fi
 fi
 
 if [ ${#pages[@]} -gt 0 ]; then
