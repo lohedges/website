@@ -180,7 +180,6 @@ echo "<div class=\"skip\">" > $build_dir/menu.html
 echo "	<h4><a id=\"main\">Main menu</a></h4>" >> $build_dir/menu.html
 echo "</div>" >> $build_dir/menu.html
 echo "<div id=\"menu\">" >> $build_dir/menu.html
-echo "<div id=\"content\">" > $build_dir/map_template.html
 echo "<h2 class=\"top\">Site map</h2>" >> $build_dir/map_template.html
 echo "	<ul>" >> $build_dir/map_template.html
 echo "		<li><a href=\"./\">Home page</a></li>" >> $build_dir/map_template.html
@@ -280,7 +279,6 @@ fi
 # Close menu and map html pages.
 echo "</div>" >> $build_dir/menu.html
 echo "	</ul>" >> $build_dir/map_template.html
-echo "</div>" >> $build_dir/map_template.html
 
 # Finish style sheet menu entries.
 echo -e "\n$(cat $build_dir/tmp1.css)" > $build_dir/tmp1.css
