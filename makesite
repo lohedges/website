@@ -200,7 +200,7 @@ for page in ${pages[@]}; do
 	# Add to page to build directory.
 	mkdir $build_dir/$page
 
-	# Add menu and mape page entries.
+	# Add menu and map page entries.
 	echo "		<li id=\"m_$page\"><a href=\"$page/\">${page^}</a>" >> $build_dir/menu.html
 	echo "		<li><a href=\"$page/\">${page^}</a>" >> $build_dir/map_template.html
 
@@ -245,8 +245,8 @@ for page in ${pages[@]}; do
 			fi
 
 			# Add menu and map page entries.
-			echo "			<li><a href=\"$page/$subpage\">$name</a></li>" >> $build_dir/menu.html
-			echo "			<li><a href=\"$page/$subpage\">$description</a></li>" >> $build_dir/map_template.html
+			echo "			<li><a href=\"$page/$subpage/\">$name</a></li>" >> $build_dir/menu.html
+			echo "			<li><a href=\"$page/$subpage/\">$description</a></li>" >> $build_dir/map_template.html
 		done
 
 		echo "		</ul>" >> $build_dir/menu.html
