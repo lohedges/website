@@ -144,10 +144,23 @@ $ mpirun -np 4 taskfarmer -f jobs.txt > sched.log
 	file using a redirection, rather than opening it and editing directly,
 	e.g. <code>cat more_jobs >> jobs.txt</code>.
 </li>
+
 <li>
 	For clusters that don't impose a wall time, TaskFarmer provides a way of
 	running an infinite number of jobs. As long as the job file isn't empty jobs
 	will continue to be launched on free cores within the allocation. Use your new
 	power wisely!
 </li>
+
+<li>
+	Clusters that use InfiniBand interconnects can cause problems when using fork()
+	in OpenMPI. A workaround can be achieved by disabling InfiniBand support for
+	fork by setting the following (BASH style) environment variables:
+</li>
+
 </ul>
+
+<samp>
+	$ export OMPI_MCA_mpi_warn_on_fork=0<br>
+$ export OMPI_MCA_btl_openib_want_fork_support=0
+</samp>
