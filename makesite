@@ -282,15 +282,15 @@ echo "    </ul>" >> $build_dir/map_template.html
 
 # Finish style sheet menu entries.
 echo -e "\n$(cat $build_dir/tmp1.css)" > $build_dir/tmp1.css
-echo "  font-weight: bold;" >> $build_dir/tmp1.css
-echo "  background: #eee;" >> $build_dir/tmp1.css
+echo "    font-weight: bold;" >> $build_dir/tmp1.css
+echo "    background: #eee;" >> $build_dir/tmp1.css
 echo "}" >> $build_dir/tmp1.css
 echo  >> $build_dir/tmp1.css
-echo "  display: block" >> $build_dir/tmp2.css
+echo "    display: block" >> $build_dir/tmp2.css
 echo "}" >> $build_dir/tmp2.css
 echo  >> $build_dir/tmp2.css
-echo "  font-weight: normal;" >> $build_dir/tmp3.css
-echo "  background: #f8f8f8;" >> $build_dir/tmp3.css
+echo "    font-weight: normal;" >> $build_dir/tmp3.css
+echo "    background: #f8f8f8;" >> $build_dir/tmp3.css
 echo "}" >> $build_dir/tmp3.css
 cat $build_dir/tmp?.css >> $build_dir/style.css
 rm $build_dir/tmp?.css
