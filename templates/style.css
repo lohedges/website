@@ -1,320 +1,320 @@
 body {
-	background: #fff url('images/fabric.png');
+    background: #fff url('images/fabric.png');
 }
 
 p, li {
-	color: #000;
-	font: normal 14px "Poly";
-	line-height: 1.4em;
+    color: #000;
+    font: normal 14px "Poly";
+    line-height: 1.4em;
 }
 
 hr {
-	display: none;
+    display: none;
 }
 
 .skip {
-	display: none;
+    display: none;
 }
 
 #container {
-	background: #fff;
-	opacity: 0.9;
-	box-shadow: 10px 10px 5px #404040;
-	width: 800px;
-	margin: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 10px;
+    background: #fff;
+    opacity: 0.9;
+    box-shadow: 10px 10px 5px #404040;
+    width: 800px;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
 
 #head {
-	padding: 10px;
-	height: 30px;
-	text-align: left;
-	vertical-align: middle;
-	border-bottom: 1px solid #cde;
+    padding: 10px;
+    height: 30px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #cde;
 }
 
 #head h1 {
-	margin-top: 0;
-	margin-bottom: 0.16em;
-	font: normal 28px "Poly";
-	color: #357;
-	float: left;
+    margin-top: 0;
+    margin-bottom: 0.16em;
+    font: normal 28px "Poly";
+    color: #357;
+    float: left;
 }
 
 #head h1 a {
-	margin-top: 0;
-	margin-bottom: 0.16em;
-	font: normal 28px "Poly";
-	color: #357;
-	float: left;
-	text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 0.16em;
+    font: normal 28px "Poly";
+    color: #357;
+    float: left;
+    text-decoration: none;
 }
 
 #head h3 {
-	margin-top:0;
-	color: #666;
-	font: normal 12px "Poly";
-	text-align: right;
-	float: right;
-	line-height: 1.4em;
+    margin-top:0;
+    color: #666;
+    font: normal 12px "Poly";
+    text-align: right;
+    float: right;
+    line-height: 1.4em;
 }
 
 #content {
-	float: right;
-	margin: 14px 0 14px 0;
-	padding: 0 8px 0 23px;
-	text-align: justify;
-	width: 624px;
-	border-left: 1px solid #cde;
+    float: right;
+    margin: 14px 0 14px 0;
+    padding: 0 8px 0 23px;
+    text-align: justify;
+    width: 624px;
+    border-left: 1px solid #cde;
 }
 
 #content h2 {
-	font: normal large "Poly";
-	color: #357;
-	/* Hide from IE Mac \*/
-	border-bottom: 1px solid #cde;
-	/* */
-	margin-top: 20px;
-	margin-bottom: 10px;
-	padding-bottom: 2px;
+    font: normal large "Poly";
+    color: #357;
+    /* Hide from IE Mac \*/
+    border-bottom: 1px solid #cde;
+    /* */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
 }
 
 #content h2.top {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 #content h3 {
-	font: bold medium "Poly";
-	color: #222;
-	padding: 0;
+    font: bold medium "Poly";
+    color: #222;
+    padding: 0;
 }
 
 #content h4,h5 {
-	font: bold small "Poly";
-	color: #444;
-	padding: 0;
+    font: bold small "Poly";
+    color: #444;
+    padding: 0;
 }
 
 #content h5 {
-	margin: 0;
+    margin: 0;
 }
 
 #content span.footnote {
-	color: #888;
-	font: normal x-small "Poly";
+    color: #888;
+    font: normal x-small "Poly";
 }
 
 #content a {
-	color: #357;
+    color: #357;
 }
 
 #content a:visited {
-	color: #638;
+    color: #638;
 }
 
 #content a:hover,
 #content a:active {
-	color: #d54;
+    color: #d54;
 }
 
 #content ul.spclist li,
 #content ol.spclist li {
-	padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 #content .ressect {
-	display: block;
-	margin: 0 0 0 0;
-	padding: 0 0 0 16px;
+    display: block;
+    margin: 0 0 0 0;
+    padding: 0 0 0 16px;
 }
 
 #content .resicon {
-	display: inline;
-	float: left;
-	width: 146px;
-	height: 146px;
-	padding: 0;
-	margin: 10px 16px 20px 0px;
-	border: solid 1px #cde;
-	text-align: center;
-	vertical-align: middle;
+    display: inline;
+    float: left;
+    width: 146px;
+    height: 146px;
+    padding: 0;
+    margin: 10px 16px 20px 0px;
+    border: solid 1px #cde;
+    text-align: center;
+    vertical-align: middle;
 }
 
 #content .resicon a {
-	text-decoration: none;
-	border: none;
-	padding: 0;
-	margin: 0;
+    text-decoration: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 #content .resicon img {
-	border: none;
+    border: none;
 }
 
 #content .restext {
-	display: inline;
-	float: left;
-	width: 420px;
+    display: inline;
+    float: left;
+    width: 420px;
 }
 
 #content .restext h3 {
-	padding: 6px 0 0 0;
-	margin: 0;
-	color: #357;
-	font: bold large "Poly";
-	text-decoration: none;
-	vertical-align: top;
+    padding: 6px 0 0 0;
+    margin: 0;
+    color: #357;
+    font: bold large "Poly";
+    text-decoration: none;
+    vertical-align: top;
 }
 
 #content .restext h3 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 #content .restext p {
-	margin: 10px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 #content .resclose{
-	clear: both;
-	display: block;
-	height: 9px;
+    clear: both;
+    display: block;
+    height: 9px;
 }
 
 .fig {
-	margin: 10px;
-	background: #fff;
-	float: right;
-	margin: 0;
-	padding: 0 0 20px 20px;
-	color: #888;
-	font: normal 10px verdana, sans-serif;
-	text-align: center;
+    margin: 10px;
+    background: #fff;
+    float: right;
+    margin: 0;
+    padding: 0 0 20px 20px;
+    color: #888;
+    font: normal 10px verdana, sans-serif;
+    text-align: center;
 }
 
 .fig a {
-	color: #888;
+    color: #888;
 }
 
 .fig a img {
-	border: none;
+    border: none;
 }
 
 .fig acronym {
-	border-bottom-color: #888;
+    border-bottom-color: #888;
 }
 
 .gimage {
-	margin: 0;
-	text-align: center;
-	padding: 10px 0 10px 0;
-	font: normal 10px verdana, sans-serif;
+    margin: 0;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    font: normal 10px verdana, sans-serif;
 }
 
 .gimage a img {
-	border: none;
+    border: none;
 }
 
 .equation {
-	margin: 0;
-	text-align: center;
-	padding: 4px 0 2px 0;
-	font: normal 10px verdana, sans-serif;
+    margin: 0;
+    text-align: center;
+    padding: 4px 0 2px 0;
+    font: normal 10px verdana, sans-serif;
 }
 
 .equation a img {
-	border: none;
+    border: none;
 }
 
 .gnopad {
-	margin: 0;
-	text-align: center;
-	padding: 0;
-	font: normal 10px verdana, sans-serif;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    font: normal 10px verdana, sans-serif;
 }
 
 .gnopad a img {
-	border: none;
+    border: none;
 }
 
 table.gimage {
-	margin-left: auto;
-	margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #menu {
-	clear: left;
-	display: inline;
-	float: left;
-	margin: 12px 0 10px 0;
-	padding: 8px 0 10px 0;
-	height: 100%;
-	width: 128px;
+    clear: left;
+    display: inline;
+    float: left;
+    margin: 12px 0 10px 0;
+    padding: 8px 0 10px 0;
+    height: 100%;
+    width: 128px;
 }
 
 #menu ul {
-	margin: 0 10px 0 5px;
-	padding: 0;
-	width: 115px;
+    margin: 0 10px 0 5px;
+    padding: 0;
+    width: 115px;
 }
 
 #menu li {
-	clear: left;
-	float: left;
-	display: inline;
-	width: 100%;
+    clear: left;
+    float: left;
+    display: inline;
+    width: 100%;
 }
 
 #menu a {
-	border-bottom: 1px solid #cde;
-	color: #357;
-	display: block;
-	font-family: "Poly";
-	text-decoration: none;
-	margin: 0 0 0 5px;
-	padding: 3px;
+    border-bottom: 1px solid #cde;
+    color: #357;
+    display: block;
+    font-family: "Poly";
+    text-decoration: none;
+    margin: 0 0 0 5px;
+    padding: 3px;
 }
 
 #menu a:hover,
 #menu a:active,
 #menu a:focus {
-	background: #f6f6f6;
-	border-bottom: 1px solid #f63;
-	color: #d54;
+    background: #f6f6f6;
+    border-bottom: 1px solid #f63;
+    color: #d54;
 }
 
 #menu ul ul a {
-	border-bottom: 1px solid #ecd;
-	color: #375;
-	display: block;
-	font-weight: normal;
-	text-decoration: none;
-	margin: 0 0 0 5px;
-	padding: 3px;
-	background: #fff;
+    border-bottom: 1px solid #ecd;
+    color: #375;
+    display: block;
+    font-weight: normal;
+    text-decoration: none;
+    margin: 0 0 0 5px;
+    padding: 3px;
+    background: #fff;
 }
 
 #menu ul ul a:hover,
 #menu ul ul a:active,
 #menu ul ul a:focus {
-	background: #f6f6f6;
-	border-bottom: 1px solid #f63;
-	color: #d54;
+    background: #f6f6f6;
+    border-bottom: 1px solid #f63;
+    color: #d54;
 }
 
 #menu ul li ul {
-	display: none
+    display: none
 }
 
 #foot {
-	background: #fff;
-	clear: both;
-	margin-top: 5px;
-	color: #666;
-	border-top: 1px #cde solid;
-	padding: 5px;
-	font: normal 12px "Poly";
+    background: #fff;
+    clear: both;
+    margin-top: 5px;
+    color: #666;
+    border-top: 1px #cde solid;
+    padding: 5px;
+    font: normal 12px "Poly";
 }
 
 #foot a,
@@ -322,182 +322,182 @@ table.gimage {
 #foot a:hover,
 #foot a:active,
 #foot a:focus {
-	color: #666;
+    color: #666;
 }
 
 .links {
-	float: right;
-	text-align: right;
+    float: right;
+    text-align: right;
 }
 
 .trail {
-	text-align: left;
-	margin: 0;
-	padding: 0;
+    text-align: left;
+    margin: 0;
+    padding: 0;
 }
 
 /* feature boxes */
 .boxes {
-	text-align: center;
+    text-align: center;
 }
 .box {
-	width: 200px; height: 200px;
-	overflow: hidden;
-	/*box-shadow: 7px 7px 3px #404040;*/
-	margin: 5px; padding: 5px 5px 5px 5px;
-	float: right;
-	transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
-	vertical-align: top;
+    width: 200px; height: 200px;
+    overflow: hidden;
+    /*box-shadow: 7px 7px 3px #404040;*/
+    margin: 5px; padding: 5px 5px 5px 5px;
+    float: right;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    vertical-align: top;
 }
 .box > div {
-	background: #fff;
-	transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
-	border: 5px solid #fff;
-	width: 195px; height: 195px;
-	overflow: hidden;
-	margin: 5; padding: 5;
-	position: relative;
+    background: #fff;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    border: 5px solid #fff;
+    width: 195px; height: 195px;
+    overflow: hidden;
+    margin: 5; padding: 5;
+    position: relative;
 }
 .box:hover > div {
-	border-color: #fcfcfc;
-	background: #fcfcfc;
+    border-color: #fcfcfc;
+    background: #fcfcfc;
 }
 .box > div > a > img, .box > div > img {
-	position: absolute;
-	left: 0; top: 0;
-	border: none;
-	z-index: 1;
-	transform: none;
-	-ms-transform: none;
-	-webkit-transform: none;
-	-o-transform: none;
-	-moz-transform: none;
-	transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
+    position: absolute;
+    left: 0; top: 0;
+    border: none;
+    z-index: 1;
+    transform: none;
+    -ms-transform: none;
+    -webkit-transform: none;
+    -o-transform: none;
+    -moz-transform: none;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 .box:hover > div > a > img, .box:hover > div > img {
-	transform: rotate(-5deg) scale(1.2, 1.2);
-	-webkit-transform: rotate(-5deg) scale(1.2, 1.2);
-	-o-transform: rotate(-5deg) scale(1.2, 1.2);
-	-moz-transform: rotate(-5deg) scale(1.2, 1.2);
+    transform: rotate(-5deg) scale(1.2, 1.2);
+    -webkit-transform: rotate(-5deg) scale(1.2, 1.2);
+    -o-transform: rotate(-5deg) scale(1.2, 1.2);
+    -moz-transform: rotate(-5deg) scale(1.2, 1.2);
 }
 .box > div > p, .box > div > form {
-	position: absolute;
-	left: 0px; bottom: -30px;
-	opacity: 0;
-	font-family: "Poly", serif;
-	font-size: 14px;
-	text-align: left;
-	width: 175px;
-	-moz-opacity: 0;
-	padding: 5px; margin: 5px;
-	background-color: rgba(255,255,255,0.9);
-	z-index: 2;
-	transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
+    position: absolute;
+    left: 0px; bottom: -30px;
+    opacity: 0;
+    font-family: "Poly", serif;
+    font-size: 14px;
+    text-align: left;
+    width: 175px;
+    -moz-opacity: 0;
+    padding: 5px; margin: 5px;
+    background-color: rgba(255,255,255,0.9);
+    z-index: 2;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 .box:hover > div > p, .box:hover > div > form {
-	bottom: 0px;
-	opacity: 1;
-	-moz-opacity: 1;
+    bottom: 0px;
+    opacity: 1;
+    -moz-opacity: 1;
 }
 a.feature {
-	font-weight: bold;
-	color: #00f;
-	text-decoration: underline;
+    font-weight: bold;
+    color: #00f;
+    text-decoration: underline;
 }
 a.feature:hover {
-	color: #f00;
+    color: #f00;
 }
 
 code {
-	font: normal small "Monaco", "Bitstream Vera Sans Mono", monospace;
+    font: normal small "Monaco", "Bitstream Vera Sans Mono", monospace;
 }
 
 kbd {
-	display: block;
-	border: solid 1px #aee;
-	background: #cff;
-	padding: 10px;
-	margin: 10px 0 10px 0;
-	font: normal small "Monaco", "Bitstream Vera Sans Mono", monospace;
-	color: #000000;
+    display: block;
+    border: solid 1px #aee;
+    background: #cff;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    font: normal small "Monaco", "Bitstream Vera Sans Mono", monospace;
+    color: #000000;
 }
 
 samp {
-	display: block;
-	border: solid 1px #eea;
-	background: #ffc;
-	padding: 10px;
-	margin: 10px 0 10px 0;
-	font: normal small "Monaco", "Bitstream Vera Sans Mono", monospace;
-	color: #000000;
+    display: block;
+    border: solid 1px #eea;
+    background: #ffc;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    font: normal small "Monaco", "Bitstream Vera Sans Mono", monospace;
+    color: #000000;
 }
 
 samp .light {
-	font-style: italic;
-	color: #666666;
+    font-style: italic;
+    color: #666666;
 }
 
 pre {
-	border: solid 1px #bbb;
-	background: #e4e4e4;
-	padding: 10px;
-	font: 14px medium "Monaco", "Bitstream Vera Sans Mono", monospace;
-	color: #000000;
+    border: solid 1px #bbb;
+    background: #e4e4e4;
+    padding: 10px;
+    font: 14px medium "Monaco", "Bitstream Vera Sans Mono", monospace;
+    color: #000000;
 }
 
 pre .String {
-	color: #4a6f8b;
+    color: #4a6f8b;
 }
 
 pre .Boolean {
-	color: #cc0000;
+    color: #cc0000;
 }
 
 pre .Special {
-	color: #8a2ae2;
-	background-color: #f1f1f1;
+    color: #8a2ae2;
+    background-color: #f1f1f1;
 }
 
 pre .Statement {
-	color: #b02f60;
-	font-weight: bold;
+    color: #b02f60;
+    font-weight: bold;
 }
 
 pre .Comment {
-	color: #0000ed;
-	font-style: italic;
+    color: #0000ed;
+    font-style: italic;
 }
 
 pre .Constant {
-	color: #ff8b00;
-	background-color:#f1f1f1;
+    color: #ff8b00;
+    background-color:#f1f1f1;
 }
 
 pre .PreProc {
-	color: #1773cc;
+    color: #1773cc;
 }
 
 pre .Type {
-	color: #008b00;
+    color: #008b00;
 }
 
 pre .Identifier {
-	color: #458b73;
+    color: #458b73;
 }
 
 pre .lnr {
-	color: #660044;
-	font-weight: bold;
+    color: #660044;
+    font-weight: bold;
 }

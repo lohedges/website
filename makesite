@@ -20,11 +20,11 @@
 
 # Check for correct arguments.
 if [ $# -ne 1 ]; then
-	echo "usage: ./makesite local|remote"
-	exit 1
+    echo "usage: ./makesite local|remote"
+    exit 1
 elif [[ "$1" != "local" && "$1" != "remote" ]]; then
-	echo "Invalid argument: options are \"local\" or \"remote\""
-	exit 1
+    echo "Invalid argument: options are \"local\" or \"remote\""
+    exit 1
 fi
 
 # Define defaults.
@@ -41,76 +41,76 @@ templates=(header.html footer.html banner.html style.css)
 # Helper functions.
 
 # Create a web page:
-#	$1 = page name
-#	$2 = page content file
+#   $1 = page name
+#   $2 = page content file
 function create_page {
-	cp $build_dir/header.html $1
-	echo "<body id=\"s_$page\">" >> $1
-	echo "<div id=\"container\">" >> $1
-	awk '{printf "\t%s\n", $0}' templates/banner.html >> $1
-	echo "	<hr />" >> $1
-	echo "	<div id=\"content\">" >> $1
-	echo >> $1
-	awk '{printf "\t%s\n", $0}' $2 >> $1
-	echo >> $1
-	echo "	</div>" >> $1
-	echo "	<hr />" >> $1
-	awk '{printf "\t%s\n", $0}' $build_dir/menu.html >> $1
-	echo "	<hr />" >> $1
-	awk '{printf "\t%s\n", $0}' templates/footer.html >> $1
-	echo "</div>" >> $1
-	echo "</body>" >> $1
-	echo "</html>" >> $1
+    cp $build_dir/header.html $1
+    echo "<body id=\"s_$page\">" >> $1
+    echo "<div id=\"container\">" >> $1
+    awk '{printf "    %s\n", $0}' templates/banner.html >> $1
+    echo "    <hr />" >> $1
+    echo "    <div id=\"content\">" >> $1
+    echo >> $1
+    awk '{printf "    %s\n", $0}' $2 >> $1
+    echo >> $1
+    echo "    </div>" >> $1
+    echo "    <hr />" >> $1
+    awk '{printf "    %s\n", $0}' $build_dir/menu.html >> $1
+    echo "    <hr />" >> $1
+    awk '{printf "    %s\n", $0}' templates/footer.html >> $1
+    echo "</div>" >> $1
+    echo "</body>" >> $1
+    echo "</html>" >> $1
 }
 
 # Replace tokens in html page:
-#	$1 = page name
+#   $1 = page name
 function replace_tokens {
-	# Account for different sed behavior on OS X and FreeBSD.
-	if [ "$os_name" = "Darwin" ] || [ "$os_name" = "FreeBSD" ]; then
-		if [ $2 -eq 1 ]; then
-			sed -i "" "s#_BASE#${local_host}#g" $1
-		else
-			sed -i "" "s#_BASE#${remote_host}#g" $1
-		fi
-		sed -i "" "s#_TITLE#${title}#g" $1
-		sed -i "" "s#_DESCRIPTION#${description}#g" $1
-		sed -i "" "s#_KEYWORDS#${keywords}#g" $1
-		sed -i "" "s#_AUTHOR#${author}#g" $1
-		sed -i "" "s#_FONT#${font}#g" $1
-		sed -i "" "s#_INDEX#${index}#g" $1
-	else
-		if [ $2 -eq 1 ]; then
-			sed -i "s#_BASE#${local_host}#g" $1
-		else
-			sed -i "s#_BASE#${remote_host}#g" $1
-		fi
-		sed -i "s#_TITLE#${title}#g" $1
-		sed -i "s#_DESCRIPTION#${description}#g" $1
-		sed -i "s#_KEYWORDS#${keywords}#g" $1
-		sed -i "s#_AUTHOR#${author}#g" $1
-		sed -i "s#_FONT#${font}#g" $1
-		sed -i "s#_INDEX#${index}#g" $1
-	fi
+    # Account for different sed behavior on OS X and FreeBSD.
+    if [ "$os_name" = "Darwin" ] || [ "$os_name" = "FreeBSD" ]; then
+        if [ $2 -eq 1 ]; then
+            sed -i "" "s#_BASE#${local_host}#g" $1
+        else
+            sed -i "" "s#_BASE#${remote_host}#g" $1
+        fi
+        sed -i "" "s#_TITLE#${title}#g" $1
+        sed -i "" "s#_DESCRIPTION#${description}#g" $1
+        sed -i "" "s#_KEYWORDS#${keywords}#g" $1
+        sed -i "" "s#_AUTHOR#${author}#g" $1
+        sed -i "" "s#_FONT#${font}#g" $1
+        sed -i "" "s#_INDEX#${index}#g" $1
+    else
+        if [ $2 -eq 1 ]; then
+            sed -i "s#_BASE#${local_host}#g" $1
+        else
+            sed -i "s#_BASE#${remote_host}#g" $1
+        fi
+        sed -i "s#_TITLE#${title}#g" $1
+        sed -i "s#_DESCRIPTION#${description}#g" $1
+        sed -i "s#_KEYWORDS#${keywords}#g" $1
+        sed -i "s#_AUTHOR#${author}#g" $1
+        sed -i "s#_FONT#${font}#g" $1
+        sed -i "s#_INDEX#${index}#g" $1
+    fi
 }
 
 # Add Google analytics script to page header:
-#	$1 = 1 if Google analytics is present
+#   $1 = 1 if Google analytics is present
 function add_analytics {
-	sed -n '/_ANALYTICS/q;p' templates/header.html > $build_dir/header.html
-	if [ $1 -eq 1 ]; then
-		cat templates/analytics.html >> $build_dir/header.html
-	fi
-	echo "</head>" >> $build_dir/header.html
+    sed -n '/_ANALYTICS/q;p' templates/header.html > $build_dir/header.html
+    if [ $1 -eq 1 ]; then
+        cat templates/analytics.html >> $build_dir/header.html
+    fi
+    echo "</head>" >> $build_dir/header.html
 }
 
 # Source configuration settings.
 echo -n "Sourcing settings ..."
 if [ -f config.txt ]; then
-	source config.txt
-	echo " Done"
+    source config.txt
+    echo " Done"
 else
-	echo " Not found"
+    echo " Not found"
 fi
 
 # Assign build directory.
@@ -119,20 +119,20 @@ build_dir=build/$1
 # Set up build directory (first purge any existing directories).
 echo -n "Creating build directory ..."
 if [ -d $build_dir ]; then
-	rm -rf $build_dir
-	mkdir -p $build_dir
+    rm -rf $build_dir
+    mkdir -p $build_dir
 else
-	mkdir -p $build_dir
+    mkdir -p $build_dir
 fi
 echo " Done"
 
 # Check for template files.
 echo -n "Checking for template files ..."
 for template in ${templates[@]}; do
-	if [ ! -f templates/$template ]; then
-		echo " Failed: $template not found!"
-		exit 1
-	fi
+    if [ ! -f templates/$template ]; then
+        echo " Failed: $template not found!"
+        exit 1
+    fi
 done
 echo " Done"
 
@@ -142,31 +142,31 @@ cp templates/style.css $build_dir
 # Check for (optional) Google analytics script.
 echo -n "Checking for Google analytics ..."
 if [ -f templates/analytics.html ]; then
-	echo " Found"
-	add_analytics 1
+    echo " Found"
+    add_analytics 1
 else
-	echo " Not found"
-	add_analytics 0
+    echo " Not found"
+    add_analytics 0
 fi
 
 # Check for home page.
 echo -n "Checking for home page ..."
 if [ ! -f content/homepage.html ]; then
-	echo "Failed: homepage.html not found!"
-	exit 1
+    echo "Failed: homepage.html not found!"
+    exit 1
 fi
 echo " Found"
 
 # Copy assets to build directory.
 echo -n "Checking for assets..."
 if [ -d content/assets ]; then
-	if [ "$(ls -A content/assets)" ]; then
-		echo " Found"
-		for i in $(ls content/assets); do
-			cp -r content/assets/$i $build_dir
-			echo "    copied assets/$i to $build_dir/"
-		done
-	fi
+    if [ "$(ls -A content/assets)" ]; then
+        echo " Found"
+        for i in $(ls content/assets); do
+            cp -r content/assets/$i $build_dir
+            echo "    copied assets/$i to $build_dir/"
+        done
+    fi
 fi
 
 # Build map of website structure.
@@ -177,15 +177,15 @@ pages=($(ls -d content/[0-9].* 2> /dev/null | cut -f2 -d "."))
 
 # Create html menu and map headers.
 echo "<div class=\"skip\">" > $build_dir/menu.html
-echo "	<h4><a id=\"main\">Main menu</a></h4>" >> $build_dir/menu.html
+echo "    <h4><a id=\"main\">Main menu</a></h4>" >> $build_dir/menu.html
 echo "</div>" >> $build_dir/menu.html
 echo "<div id=\"menu\">" >> $build_dir/menu.html
 echo "<h2 class=\"top\">Site map</h2>" >> $build_dir/map_template.html
-echo "	<ul>" >> $build_dir/map_template.html
-echo "		<li><a href=\"./\">Home page</a></li>" >> $build_dir/map_template.html
+echo "    <ul>" >> $build_dir/map_template.html
+echo "        <li><a href=\"./\">Home page</a></li>" >> $build_dir/map_template.html
 
 if [ ${#pages[@]} -gt 0 ]; then
-	echo "	<ul>" >> $build_dir/menu.html
+    echo "    <ul>" >> $build_dir/menu.html
 fi
 
 echo "    Found ${#pages[@]} pages, scanning subpages ..."
@@ -195,102 +195,102 @@ count=1
 
 # Loop over pages.
 for page in ${pages[@]}; do
-	echo "        $page/"
+    echo "        $page/"
 
-	# Add to page to build directory.
-	mkdir $build_dir/$page
+    # Add to page to build directory.
+    mkdir $build_dir/$page
 
-	# Add menu and map page entries.
-	echo "		<li id=\"m_$page\"><a href=\"$page/\">${page^}</a>" >> $build_dir/menu.html
-	echo "		<li><a href=\"$page/\">${page^}</a>" >> $build_dir/map_template.html
+    # Add menu and map page entries.
+    echo "        <li id=\"m_$page\"><a href=\"$page/\">${page^}</a>" >> $build_dir/menu.html
+    echo "        <li><a href=\"$page/\">${page^}</a>" >> $build_dir/map_template.html
 
-	# Add menu entry to style sheet.
-	if [ $count -ne ${#pages[@]} ]; then
-		echo "#s_$page #m_$page a," >> $build_dir/tmp1.css
-	else
-		echo "#s_$page #m_$page a {" >> $build_dir/tmp1.css
-	fi
+    # Add menu entry to style sheet.
+    if [ $count -ne ${#pages[@]} ]; then
+        echo "#s_$page #m_$page a," >> $build_dir/tmp1.css
+    else
+        echo "#s_$page #m_$page a {" >> $build_dir/tmp1.css
+    fi
 
-	# Find all subpages of page.
-	subpages=($(ls -d content/[0-9].$page/[0-9].* 2> /dev/null | cut -f3 -d "."))
+    # Find all subpages of page.
+    subpages=($(ls -d content/[0-9].$page/[0-9].* 2> /dev/null | cut -f3 -d "."))
 
-	if [ ${#subpages[@]} -gt 0 ]; then
-		echo "		<ul>" >> $build_dir/menu.html
-		echo "		<ul>" >> $build_dir/map_template.html
+    if [ ${#subpages[@]} -gt 0 ]; then
+        echo "        <ul>" >> $build_dir/menu.html
+        echo "        <ul>" >> $build_dir/map_template.html
 
-		# Add menu entry to style sheet.
-		if [ $count -ne ${#pages[@]} ]; then
-			echo "#s_$page #m_$page ul," >> $build_dir/tmp2.css
-			echo "#s_$page #m_$page ul li a," >> $build_dir/tmp3.css
-		else
-			echo "#s_$page #m_$page ul {" >> $build_dir/tmp2.css
-			echo "#s_$page #m_$page ul li a {" >> $build_dir/tmp3.css
-		fi
+        # Add menu entry to style sheet.
+        if [ $count -ne ${#pages[@]} ]; then
+            echo "#s_$page #m_$page ul," >> $build_dir/tmp2.css
+            echo "#s_$page #m_$page ul li a," >> $build_dir/tmp3.css
+        else
+            echo "#s_$page #m_$page ul {" >> $build_dir/tmp2.css
+            echo "#s_$page #m_$page ul li a {" >> $build_dir/tmp3.css
+        fi
 
-		# Loop over all subpages of page.
-		for subpage in ${subpages[@]}; do
-			echo "            $subpage/"
+        # Loop over all subpages of page.
+        for subpage in ${subpages[@]}; do
+            echo "            $subpage/"
 
-			# Add to subpage to build directory.
-			mkdir $build_dir/$page/$subpage
+            # Add to subpage to build directory.
+            mkdir $build_dir/$page/$subpage
 
-			# set default link name
-			name="${subpage^}"
+            # set default link name
+            name="${subpage^}"
 
-			# Source subpage configuation.
-			if [ -f content/[0-9].$page/[0-9].$subpage/$subpage.config ]; then
-				source content/[0-9].$page/[0-9].$subpage/$subpage.config
-			else
-				description="${subpage^}"
-			fi
+            # Source subpage configuation.
+            if [ -f content/[0-9].$page/[0-9].$subpage/$subpage.config ]; then
+                source content/[0-9].$page/[0-9].$subpage/$subpage.config
+            else
+                description="${subpage^}"
+            fi
 
-			# Add menu and map page entries.
-			echo "			<li><a href=\"$page/$subpage/\">$name</a></li>" >> $build_dir/menu.html
-			echo "			<li><a href=\"$page/$subpage/\">$description</a></li>" >> $build_dir/map_template.html
-		done
+            # Add menu and map page entries.
+            echo "            <li><a href=\"$page/$subpage/\">$name</a></li>" >> $build_dir/menu.html
+            echo "            <li><a href=\"$page/$subpage/\">$description</a></li>" >> $build_dir/map_template.html
+        done
 
-		echo "		</ul>" >> $build_dir/menu.html
-		echo "		</ul>" >> $build_dir/map_template.html
-	fi
+        echo "        </ul>" >> $build_dir/menu.html
+        echo "        </ul>" >> $build_dir/map_template.html
+    fi
 
-	echo "		</li>" >> $build_dir/menu.html
-	echo "		</li>" >> $build_dir/map_template.html
+    echo "        </li>" >> $build_dir/menu.html
+    echo "        </li>" >> $build_dir/map_template.html
 
-	count=$((count+1))
+    count=$((count+1))
 done
 
 # Add GitHub and resume menu entries if present.
 if [[ -n "$github" ]]; then
-	echo "		<li id=\"m_github\"><a href=\"$github\">GitHub</a></li>" >> $build_dir/menu.html
+    echo "        <li id=\"m_github\"><a href=\"$github\">GitHub</a></li>" >> $build_dir/menu.html
 fi
 if [[ -n "$resume" ]]; then
-	# check resume file exists
-	if [ -f $build_dir/$resume ]; then
-		echo "		<li id=\"m_resume\"><a href=\"$resume\">R&eacute;sum&eacute;</a></li>" >> $build_dir/menu.html
-	else
-		echo "Warning: Resume file not found!"
-	fi
+    # check resume file exists
+    if [ -f $build_dir/$resume ]; then
+        echo "        <li id=\"m_resume\"><a href=\"$resume\">R&eacute;sum&eacute;</a></li>" >> $build_dir/menu.html
+    else
+        echo "Warning: Resume file not found!"
+    fi
 fi
 
 if [ ${#pages[@]} -gt 0 ]; then
-	echo "	</ul>" >> $build_dir/menu.html
+    echo "    </ul>" >> $build_dir/menu.html
 fi
 
 # Close menu and map html pages.
 echo "</div>" >> $build_dir/menu.html
-echo "	</ul>" >> $build_dir/map_template.html
+echo "    </ul>" >> $build_dir/map_template.html
 
 # Finish style sheet menu entries.
 echo -e "\n$(cat $build_dir/tmp1.css)" > $build_dir/tmp1.css
-echo "	font-weight: bold;" >> $build_dir/tmp1.css
-echo "	background: #eee;" >> $build_dir/tmp1.css
+echo "  font-weight: bold;" >> $build_dir/tmp1.css
+echo "  background: #eee;" >> $build_dir/tmp1.css
 echo "}" >> $build_dir/tmp1.css
 echo  >> $build_dir/tmp1.css
-echo "	display: block" >> $build_dir/tmp2.css
+echo "  display: block" >> $build_dir/tmp2.css
 echo "}" >> $build_dir/tmp2.css
 echo  >> $build_dir/tmp2.css
-echo "	font-weight: normal;" >> $build_dir/tmp3.css
-echo "	background: #f8f8f8;" >> $build_dir/tmp3.css
+echo "  font-weight: normal;" >> $build_dir/tmp3.css
+echo "  background: #f8f8f8;" >> $build_dir/tmp3.css
 echo "}" >> $build_dir/tmp3.css
 cat $build_dir/tmp?.css >> $build_dir/style.css
 rm $build_dir/tmp?.css
@@ -303,9 +303,9 @@ page="index"
 
 # Create home page.
 if [ -f content/homepage.config ]; then
-	source content/homepage.config
+    source content/homepage.config
 else
-	description="Home page."
+    description="Home page."
 fi
 create_page $build_dir/index.html content/homepage.html
 
@@ -313,9 +313,9 @@ create_page $build_dir/index.html content/homepage.html
 title=$main_title
 
 if [ "$1" = "local" ]; then
-	replace_tokens $build_dir/index.html 1
+    replace_tokens $build_dir/index.html 1
 else
-	replace_tokens $build_dir/index.html 0
+    replace_tokens $build_dir/index.html 0
 fi
 
 echo "    $build_dir/index.html"
@@ -323,73 +323,73 @@ echo "    $build_dir/index.html"
 # Create content for each page and its subpages.
 for page in ${pages[@]}; do
 
-	# Source page configuration file.
-	if [ -f content/[0-9].$page/$page.config ]; then
-		source content/[0-9].$page/$page.config
-	else
-		description="${page^}"
-	fi
+    # Source page configuration file.
+    if [ -f content/[0-9].$page/$page.config ]; then
+        source content/[0-9].$page/$page.config
+    else
+        description="${page^}"
+    fi
 
-	create_page $build_dir/$page/index.html content/[0-9].$page/$page.html
+    create_page $build_dir/$page/index.html content/[0-9].$page/$page.html
 
-	# Generate page title string.
-	title=$main_title/$page
+    # Generate page title string.
+    title=$main_title/$page
 
-	if [ "$1" = "local" ]; then
-		replace_tokens $build_dir/$page/index.html 1
-	else
-		replace_tokens $build_dir/$page/index.html 0
-	fi
+    if [ "$1" = "local" ]; then
+        replace_tokens $build_dir/$page/index.html 1
+    else
+        replace_tokens $build_dir/$page/index.html 0
+    fi
 
-	echo "    $build_dir/$page/index.html"
+    echo "    $build_dir/$page/index.html"
 
-	# Copy any assets to build directory.
-	if [ -d content/[0-9].$page/assets ]; then
-		if [ "$(ls -A content/[0-9].$page/assets)" ]; then
-			for i in $(ls content/[0-9].$page/assets); do
-				cp -r content/[0-9].$page/assets/$i $build_dir/$page
-				echo "        copied assets/$i to $build_dir/$page/"
-			done
-		fi
-	fi
+    # Copy any assets to build directory.
+    if [ -d content/[0-9].$page/assets ]; then
+        if [ "$(ls -A content/[0-9].$page/assets)" ]; then
+            for i in $(ls content/[0-9].$page/assets); do
+                cp -r content/[0-9].$page/assets/$i $build_dir/$page
+                echo "        copied assets/$i to $build_dir/$page/"
+            done
+        fi
+    fi
 
-	# Find subpages of page.
-	subpages=($(ls -d content/[0-9].$page/[0-9].* 2> /dev/null | cut -f3 -d "."))
+    # Find subpages of page.
+    subpages=($(ls -d content/[0-9].$page/[0-9].* 2> /dev/null | cut -f3 -d "."))
 
-	if [ ${#subpages[@]} -gt 0 ]; then
-		for subpage in ${subpages[@]}; do
+    if [ ${#subpages[@]} -gt 0 ]; then
+        for subpage in ${subpages[@]}; do
 
-			# Source subpage configuration file.
-			if [ -f content/[0-9].$page/[0-9].$subpage/$subpage.config ]; then
-				source content/[0-9].$page/[0-9].$subpage/$subpage.config
-			else
-				description="${subpage^}"
-			fi
+            # Source subpage configuration file.
+            if [ -f content/[0-9].$page/[0-9].$subpage/$subpage.config ]; then
+                source content/[0-9].$page/[0-9].$subpage/$subpage.config
+            else
+                description="${subpage^}"
+            fi
 
-			create_page $build_dir/$page/$subpage/index.html content/[0-9].$page/[0-9].$subpage/$subpage.html
+            create_page $build_dir/$page/$subpage/index.html content/[0-9].$page/[0-9].$subpage/$subpage.html
 
-			# Generate subpage title string.
-			title=$main_title/$page/$subpage
+            # Generate subpage title string.
+            title=$main_title/$page/$subpage
 
-			if [ "$1" = "local" ]; then
-				replace_tokens $build_dir/$page/$subpage/index.html 1
-			else
-				replace_tokens $build_dir/$page/$subpage/index.html 0
-			fi
+            if [ "$1" = "local" ]; then
+                replace_tokens $build_dir/$page/$subpage/index.html 1
+            else
+                replace_tokens $build_dir/$page/$subpage/index.html 0
+            fi
 
-			echo "    $build_dir/$page/$subpage/index.html"
+            echo "    $build_dir/$page/$subpage/index.html"
 
-			# Copy any assets to build directory.
-			if [ -d content/[0-9].$page/[0-9].$subpage/assets ]; then
-				if [ "$(ls -A content/[0-9].$page/[0-9].$subpage/assets)" ]; then
-					for i in $(ls content/[0-9].$page/[0-9].$subpage/assets); do
-						cp -r content/[0-9].$page/[0-9].$subpage/assets/$i $build_dir/$page/$subpage
-						echo "        copied assets/$i to $build_dir/$page/$subpage/"
-					done
-				fi
-			fi
-		done
-	fi
+            # Copy any assets to build directory.
+            if [ -d content/[0-9].$page/[0-9].$subpage/assets ]; then
+                if [ "$(ls -A content/[0-9].$page/[0-9].$subpage/assets)" ]; then
+                    for i in $(ls content/[0-9].$page/[0-9].$subpage/assets); do
+                        cp -r content/[0-9].$page/[0-9].$subpage/assets/$i $build_dir/$page/$subpage
+                        echo "        copied assets/$i to $build_dir/$page/$subpage/"
+                    done
+                fi
+            fi
+        done
+    fi
 done
 
 # Create site map.
@@ -398,9 +398,9 @@ create_page $build_dir/map.html $build_dir/map_template.html
 
 title=$main_title/map
 if [ "$1" = "local" ]; then
-	replace_tokens $build_dir/map.html 1
+    replace_tokens $build_dir/map.html 1
 else
-	replace_tokens $build_dir/map.html 0
+    replace_tokens $build_dir/map.html 0
 fi
 
 echo "    $build_dir/map.html"

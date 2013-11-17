@@ -25,16 +25,16 @@ ensures that only one process has access to the job file at any given time.
 
 <p>
 The order of operations is as follows:
+</p>
 
 <ul>
-	<li>A process opens the job file and obtains an exclusive lock.</li>
-	<li>All jobs are read into a buffer.</li>
-	<li>First job is read and buffer is truncated.</li>
-	<li>Truncated buffer is written back to the file.</li>
-	<li>File is unlocked and closed (other processes can now access it).</li>
-	<li>Job is launched.</li>
+    <li>A process opens the job file and obtains an exclusive lock.</li>
+    <li>All jobs are read into a buffer.</li>
+    <li>First job is read and buffer is truncated.</li>
+    <li>Truncated buffer is written back to the file.</li>
+    <li>File is unlocked and closed (other processes can now access it).</li>
+    <li>Job is launched.</li>
 </ul>
-</p>
 
 <p>
 A Python implementation is provided in the <code>python/</code> directory, although
@@ -82,16 +82,16 @@ options:
 </p>
 
 <dl>
-	<dt><b>-h</b> or <b>--help</b></dt>
-	<dd>Print the help message to stdout.</dd>
-	<dt><b>-f</b> or <b>--file &lt;string&gt;</b></dt>
-	<dd>Specify the location of the job file (required).</dd>
-	<dt><b>-v</b> or <b>--verbose</b></dt>
-	<dd>Activate verbose mode (status updates printed to stdout).</dd>
-	<dt><b>-w</b> or <b>--wait-on-idle</b></dt>
-	<dd>Wait for more jobs when idle.</dd>
-	<dt><b>-s</b> or <b>--sleep-time &lt;double&gt;</b></dt>
-	<dd>Specify the duration of time to sleep when idle (seconds).</dd>
+    <dt><b>-h</b> or <b>--help</b></dt>
+    <dd>Print the help message to stdout.</dd>
+    <dt><b>-f</b> or <b>--file &lt;string&gt;</b></dt>
+    <dd>Specify the location of the job file (required).</dd>
+    <dt><b>-v</b> or <b>--verbose</b></dt>
+    <dd>Activate verbose mode (status updates printed to stdout).</dd>
+    <dt><b>-w</b> or <b>--wait-on-idle</b></dt>
+    <dd>Wait for more jobs when idle.</dd>
+    <dt><b>-s</b> or <b>--sleep-time &lt;double&gt;</b></dt>
+    <dd>Specify the duration of time to sleep when idle (seconds).</dd>
 </dl>
 
 <p>
@@ -137,30 +137,30 @@ $ mpirun -np 4 taskfarmer -f jobs.txt > sched.log
 
 <ul>
 <li>
-	When individual simulations are very short it is probably dangerous to
-	modify the job file externally as it will likely conflict with TaskFarmer's
-	I/O. The file should only be modified when all cores are active (running jobs)
-	or in an idle state (job file is emtpy). It is recommended to modify the job
-	file using a redirection, rather than opening it and editing directly,
-	e.g. <code>cat more_jobs >> jobs.txt</code>.
+    When individual simulations are very short it is probably dangerous to
+    modify the job file externally as it will likely conflict with TaskFarmer's
+    I/O. The file should only be modified when all cores are active (running jobs)
+    or in an idle state (job file is emtpy). It is recommended to modify the job
+    file using a redirection, rather than opening it and editing directly,
+    e.g. <code>cat more_jobs >> jobs.txt</code>.
 </li>
 
 <li>
-	For clusters that don't impose a wall time, TaskFarmer provides a way of
-	running an infinite number of jobs. As long as the job file isn't empty jobs
-	will continue to be launched on free cores within the allocation. Use your new
-	power wisely!
+    For clusters that don't impose a wall time, TaskFarmer provides a way of
+    running an infinite number of jobs. As long as the job file isn't empty jobs
+    will continue to be launched on free cores within the allocation. Use your new
+    power wisely!
 </li>
 
 <li>
-	Clusters that use InfiniBand interconnects can cause problems when using fork()
-	in OpenMPI. A workaround can be achieved by disabling InfiniBand support for
-	fork by setting the following (BASH style) environment variables:
+    Clusters that use InfiniBand interconnects can cause problems when using fork()
+    in OpenMPI. A workaround can be achieved by disabling InfiniBand support for
+    fork by setting the following (BASH style) environment variables:
 </li>
 
 </ul>
 
 <samp>
-	$ export OMPI_MCA_mpi_warn_on_fork=0<br>
+    $ export OMPI_MCA_mpi_warn_on_fork=0<br>
 $ export OMPI_MCA_btl_openib_want_fork_support=0
 </samp>
