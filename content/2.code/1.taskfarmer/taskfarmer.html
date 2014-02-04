@@ -73,7 +73,8 @@ $ sudo make uninstall
 <h2 class="top">Usage</h2>
 
 <samp>
-$ mpirun -np CORES taskfarmer [-h] -f FILE [-v] [-w] [-s SLEEP_TIME]
+    $ mpirun -np CORES taskfarmer [-h] -f FILE [-v] [-w] [-r] [-s SLEEP_TIME]<br>
+    &emsp;&emsp;[-m MAX_RETRIES]
 </samp>
 
 <p>
@@ -90,8 +91,12 @@ options:
     <dd>Activate verbose mode (status updates printed to stdout).</dd>
     <dt><b>-w</b> or <b>--wait-on-idle</b></dt>
     <dd>Wait for more jobs when idle.</dd>
-    <dt><b>-s</b> or <b>--sleep-time &lt;double&gt;</b></dt>
+    <dt><b>-r</b> or <b>--retry</b></dt>
+    <dd>Retry failed jobs.</dd>
+    <dt><b>-s</b> or <b>--sleep-time &lt;int&gt;</b></dt>
     <dd>Specify the duration of time to sleep when idle (seconds).</dd>
+    <dt><b>-m</b> or <b>--max-retries &lt;int&gt;</b></dt>
+    <dd>Specify the maximum number of times to retry a failed job.</dd>
 </dl>
 
 <p>
@@ -103,6 +108,11 @@ that a process sleeps for can be changed with the <code>--sleep-time</code> opti
 default is 300 seconds. This cycle will continue until the wall time is
 reached. By default <code>wait-on-idle</code> is deavtivated meaning that each process
 exits when the job file is empty.
+</p>
+
+<p>
+The <code>--retry</code> and <code>--max-retries</code> options allow TaskFarmer to retry
+failed jobs up to a maximum number of attempts. The default number of retries is 10.
 </p>
 
 <h2 class="top">Examples</h2>
@@ -146,6 +156,13 @@ $ mpirun -np 4 taskfarmer -f jobs.txt > sched.log
 </li>
 
 <li>
+    At present, when the <code>--retry</code> option is set, failed jobs are only
+    relaunched by the same process on which they failed. This is fine when job failures
+    are caused by buggy or unstable code, but is unlikely to help when failure results
+    from a bad core or node on a cluster.
+</li>
+
+<li>
     For clusters that don't impose a wall time, TaskFarmer provides a way of
     running an infinite number of jobs. As long as the job file isn't empty jobs
     will continue to be launched on free cores within the allocation. Use your new
@@ -153,9 +170,9 @@ $ mpirun -np 4 taskfarmer -f jobs.txt > sched.log
 </li>
 
 <li>
-    Clusters that use InfiniBand interconnects can cause problems when using fork()
-    in OpenMPI. A workaround can be achieved by disabling InfiniBand support for
-    fork by setting the following (BASH style) environment variables:
+    Clusters that use InfiniBand interconnects can cause problems when using
+    <code>fork()</code> in OpenMPI. A workaround can be achieved by disabling
+    InfiniBand support for fork by setting the following (BASH style) environment variables:
 </li>
 
 </ul>
