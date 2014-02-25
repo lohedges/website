@@ -158,7 +158,7 @@ fi
 echo " Found"
 
 # Copy assets to build directory.
-echo -n "Checking for assets..."
+echo -n "Checking for assets ..."
 if [ -d content/assets ]; then
     if [ "$(ls -A content/assets)" ]; then
         echo " Found"
