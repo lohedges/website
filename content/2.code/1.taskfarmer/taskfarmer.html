@@ -155,6 +155,16 @@ remaining jobs in each file as well as the total.
 wc -l job_files/*
 </samp>
 
+<p>
+Since jobs are read from the job file line-by-line it is possible to
+introduce dependencies between jobs by placing multiple jobs on a single
+line separated by semicolons. For example
+</p>
+
+<samp>
+perform_calculation > data.txt; analyze_data < data.txt
+</samp>
+
 <h2 class="top">Words of caution</h2>
 
 <ul>
