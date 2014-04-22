@@ -7,20 +7,20 @@ TaskFarmer can be downloaded from its <a href="https://github.com/lohedges/taskf
 <h2 class="top">About</h2>
 
 <p>
-Execute a list of system commands from a job file one-by-one. This allows
-many simulations to be run within a single mpirun allocation. A new job is
+Execute a list of system commands from a task file one-by-one. This allows
+many simulations to be run within a single mpirun allocation. A new task is
 launched whenever a process becomes available, hence ensuring 100% utilization
-of the cores for the duration of the wall time, or until the job file is
+of the cores for the duration of the wall time, or until the task file is
 empty, whichever occurs first. This is useful for running many short
 simulations on a small number of cores, or to avoid resource wastage when
-individual simulations have markedly different run times. The job file can
+individual simulations have markedly different run times. The task file can
 be updated dynamically, allowing simulations to be added or deleted as
 required.
 </p>
 
 <p>
 A master-worker type scenario is avoided by exploiting a file lock. This
-ensures that only one process has access to the job file at any given time.
+ensures that only one process has access to the task file at any given time.
 </p>
 
 <p>
@@ -28,12 +28,12 @@ The order of operations is as follows:
 </p>
 
 <ul>
-    <li>A process opens the job file and obtains an exclusive lock.</li>
-    <li>All jobs are read into a buffer.</li>
-    <li>First job is read and buffer is truncated.</li>
+    <li>A process opens the task file and obtains an exclusive lock.</li>
+    <li>All tasks are read into a buffer.</li>
+    <li>First task is read and buffer is truncated.</li>
     <li>Truncated buffer is written back to the file.</li>
     <li>File is unlocked and closed (other processes can now access it).</li>
-    <li>Job is launched.</li>
+    <li>Task is launched.</li>
 </ul>
 
 <p>
@@ -86,33 +86,33 @@ options:
     <dt><b>-h</b> or <b>--help</b></dt>
     <dd>Print the help message to stdout.</dd>
     <dt><b>-f</b> or <b>--file &lt;string&gt;</b></dt>
-    <dd>Specify the location of the job file (required).</dd>
+    <dd>Specify the location of the task file (required).</dd>
     <dt><b>-v</b> or <b>--verbose</b></dt>
     <dd>Activate verbose mode (status updates printed to stdout).</dd>
     <dt><b>-w</b> or <b>--wait-on-idle</b></dt>
-    <dd>Wait for more jobs when idle.</dd>
+    <dd>Wait for more tasks when idle.</dd>
     <dt><b>-r</b> or <b>--retry</b></dt>
-    <dd>Retry failed jobs.</dd>
+    <dd>Retry failed tasks.</dd>
     <dt><b>-s</b> or <b>--sleep-time &lt;int&gt;</b></dt>
     <dd>Specify the duration of time to sleep when idle (seconds).</dd>
     <dt><b>-m</b> or <b>--max-retries &lt;int&gt;</b></dt>
-    <dd>Specify the maximum number of times to retry a failed job.</dd>
+    <dd>Specify the maximum number of times to retry a failed task.</dd>
 </dl>
 
 <p>
 It is possible to change the state of idle cores using the <code>--wait-on-idle</code>
 option. When set, a core will sleep for a specified period of time if it
-cannot find a job to execute. After the waiting period the process will
-check whether more jobs have been added to the job file. The amount of time
+cannot find a task to execute. After the waiting period the process will
+check whether more tasks have been added to the task file. The amount of time
 that a process sleeps for can be changed with the <code>--sleep-time</code> option, the
 default is 300 seconds. This cycle will continue until the wall time is
 reached. By default <code>wait-on-idle</code> is deavtivated meaning that each process
-exits when the job file is empty.
+exits when the task file is empty.
 </p>
 
 <p>
 The <code>--retry</code> and <code>--max-retries</code> options allow TaskFarmer to retry
-failed jobs up to a maximum number of attempts. The default number of retries is 10.
+failed tasks up to a maximum number of attempts. The default number of retries is 10.
 </p>
 
 <h2 class="top">Examples</h2>
@@ -120,7 +120,7 @@ failed jobs up to a maximum number of attempts. The default number of retries is
 <p> Try the following:</p>
 
 <samp>
-$ shuf examples/commands.txt | head -n 100 > jobs.txt | mpirun -np 4 src/taskfarmer -f jobs.txt
+$ shuf examples/commands.txt | head -n 100 > tasks.txt | mpirun -np 4 src/taskfarmer -f tasks.txt
 </samp>
 
 <p> A collection of example PBS batch scripts are included in the <code>examples/</code> directory.</p>
@@ -128,36 +128,36 @@ $ shuf examples/commands.txt | head -n 100 > jobs.txt | mpirun -np 4 src/taskfar
 <h2 class="top">Tips</h2>
 
 <p>
-System commands in the job file should redirect their standard output
+System commands in the task file should redirect their standard output
 to a separate log file to avoid littering the standard output of TaskFarmer
-itself. As an example, the <code>jobs.txt</code> file could contain a command like
+itself. As an example, the <code>tasks.txt</code> file could contain a command like
 </p>
 
 <samp>
-$ echo "Hello, I'm a job" > job.log
+$ echo "Hello, I'm a task" > job.log
 </samp>
 
 <p>with TaskFarmer launched as follows:</p>
 
 <samp>
-$ mpirun -np 4 taskfarmer -f jobs.txt > sched.log
+$ mpirun -np 4 taskfarmer -f tasks.txt > sched.log
 </samp>
 
 <p>
 The <code>wc</code> command-line utility is handy for checking the number of
-remaining jobs in a job file without the need to trawl through any of TaskFarmer's
-logs. For example, if job files are stored in a directory called <code>job_files</code>
+remaining tasks in a task file without the need to trawl through any of TaskFarmer's
+logs. For example, if task files are stored in a directory called <code>task_files</code>
 then the following command will provide a concise output showing the number of
-remaining jobs in each file as well as the total.
+remaining tasks in each file as well as the total.
 </p>
 
 <samp>
-wc -l job_files/*
+wc -l task_files/*
 </samp>
 
 <p>
-Since jobs are read from the job file line-by-line it is possible to
-introduce dependencies between jobs by placing multiple jobs on a single
+Since tasks are read from the task file line-by-line it is possible to
+introduce dependencies between tasks by placing multiple tasks on a single
 line separated by semicolons. For example
 </p>
 
@@ -170,22 +170,22 @@ perform_calculation > data.txt; analyze_data < data.txt
 <ul>
 <li>
     When individual simulations are very short it is probably dangerous to
-    modify the job file externally as it will likely conflict with TaskFarmer's
-    I/O. The file should only be modified when all cores are active (running jobs)
-    or in an idle state (job file is emtpy). It is recommended to modify the job
+    modify the task file externally as it will likely conflict with TaskFarmer's
+    I/O. The file should only be modified when all cores are active (running tasks)
+    or in an idle state (task file is emtpy). It is recommended to modify the task
     file using a redirection, rather than opening it and editing directly,
-    e.g. <code>cat more_jobs >> jobs.txt</code>.
+    e.g. <code>cat more_tasks >> tasks.txt</code>.
 </li>
 
 <li>
-    At present, when the <code>--retry</code> option is set, failed jobs are only
-    relaunched by the same process on which they failed. This is fine when job failures
+    At present, when the <code>--retry</code> option is set, failed tasks are only
+    relaunched by the same process on which they failed. This is fine when task failures
     are caused by buggy or unstable code, but is unlikely to help when failure results
     from a bad core or node on a cluster.
 </li>
 
 <li>
-    Very large job files containing complex shell commands can be problematic
+    Very large task files containing complex shell commands can be problematic
     since each process needs to be able to load the file to memory. This
     problem can be mitigated through judicious choice of command names
     (e.g. using short form options) and use of relative paths where possible.
@@ -193,7 +193,7 @@ perform_calculation > data.txt; analyze_data < data.txt
 
 <li>
     For clusters that don't impose a wall time, TaskFarmer provides a way of
-    running an infinite number of jobs. As long as the job file isn't empty jobs
+    running an infinite number of tasks. As long as the task file isn't empty tasks
     will continue to be launched on free cores within the allocation. Use your new
     power wisely!
 </li>
