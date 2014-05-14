@@ -25,13 +25,14 @@ illustrated in the image below (particles colored yellow have a high degree of h
 </center>
 
 <p>
-Computing such an order parameter typically requires the calculation of angles
-between all of the particle pairs. One must first take an arctangent (or similar)
-to compute the angle and then use sines and cosines to evaluate the exponential
-factor. Such a procedure is rather computationally expensive, particularly when
-a large amount of statistics are required and one must consider all particles in
-the system at multiple time steps. However, there is a useful trick that lets us
-evaluate the expression without having to compute a single pesky sine or cosine.
+Computing such an order parameter typically requires calculation of the angles
+between all of the nearest neighbour particle pairs. One must first take an
+arctangent (or similar) to compute the angle and then use sines and cosines
+to evaluate the exponential factor. Such a procedure is rather computationally
+expensive, particularly when a large number of statistics are required and one
+must consider all particles in the system at multiple time steps. However, there
+is a useful trick that lets us evaluate the expression without having to compute
+a single pesky sine or cosine.
 </p>
 
 <p>
@@ -47,8 +48,7 @@ Combining with the exponential law for integer powers leads us to <a href="http:
 \begin{eqnarray*}
 \left(e^{ix}\right)^n&=&e^{inx}\\
 e^{i(nx)}&=&\mathrm{cos}\left(nx\right) + i \mathrm{sin}\left(nx\right)\\
-\mathrm{cos}\left(nx\right) + i \mathrm{sin}\left(nx\right)&=&\left[\mathrm{cos}(x) + i\mathrm{sin}(x)\right]^n.
-\end{eqnarray*}
+\mathrm{cos}\left(nx\right) + i \mathrm{sin}\left(nx\right)&=&\left[\mathrm{cos}(x) + i\mathrm{sin}(x)\right]^n.  \end{eqnarray*}
 
 <p>
 This is nothing more than a binomial expansion. Letting \(x=\theta_{jk}\)
