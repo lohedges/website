@@ -23,9 +23,10 @@ My solution, <a href="https:github.com/lohedges/latuxit">LaTuXiT</a>, a simple B
 dependencies outside of the standard <a href="http://www.tug.org/texlive/">Tex Live</a> core (other than
 <a href="http://www.ghostscript.com/">Ghostscript</a> for additional PostScript support). The script replicates two
 of LaTeXiT's key features: an equation library, and a link back feature to allow editing of existing equations.
-LaTuXiT works by hashing each equation string and building a cache. Metadata written as comments in the output
-PDF and PostScript images allows LaTuXiT to match an image to an equation in the cache. LaTuXiT has full RGB color
-support and also accepts any of the 68 standard colors known to dvips. For more details on the workings of LaTuXiT,
+LaTuXiT works by hashing each equation string and building a library. Metadata written as comments in the output
+PDF and PostScript images allows LaTuXiT to match an image to an equation in the library. LaTuXiT has full RGB color
+support and also accepts any of the 68 standard colors known to dvips. Due to its command-line nature, LaTuXiT
+provides a handy way of processing many equations from a batch script. For more details on the workings of LaTuXiT,
 please visit its <a href="https:github.com/lohedges/latuxit">GitHub</a> page.
 </p>
 
@@ -70,7 +71,7 @@ Let's check the modified image. Snazzy.
 </div>
 </center>
 
-<h2 class="top">Searching the equation cache</h2>
+<h2 class="top">Searching the equation library</h2>
 
 <p>
 Suppose you want to edit an equation but you've lost the image file. You can kind of remember the syntax, but it's
@@ -79,7 +80,7 @@ long and complicated so you don't really fancy attempting to type it out again. 
 
 <p>
 Thankfully LaTuXiT offers a solution. As a starting point you could simply get LaTuXiT to list all of the equations
-in the cache and use grep to look for matches.
+in the library and use grep to look for matches.
 </p>
 
 <samp>
@@ -97,7 +98,7 @@ $ latuxit -s "sin"
 </samp>
 
 <p>
-The two column output shows a list of matching hashes from the cache and the corresponding equations.
+The two column output shows a list of matching hashes from the library and the corresponding equations.
 Say the first match is the equation that we want. To reprocess it we can simply run LaTuXiT in <code>hash</code> mode.
 The hash string that is passed as a command-line argument should be long enough to ensure a unique match.
 LaTuXiT will abort if multiple matches are found. The equation will be opened in an editor so that it can be modified
