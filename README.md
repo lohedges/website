@@ -1,6 +1,7 @@
 # lesterhedges.net
 
-Copyright &copy; 2013 Lester Hedges.
+Copyright &copy; 2013, 2014 Lester Hedges.
+Released under the [GPL](http://www.gnu.org/copyleft/gpl.html).
 
 ## About
 This is the repo for my personal website, [lesterhedges.net](http://lesterhedges.net).
