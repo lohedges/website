@@ -320,6 +320,9 @@ create_page $build_dir/index.html content/homepage.html
 # Set page title string.
 title=$main_title
 
+# Set redirect to blank string.
+redirect=""
+
 if [ "$1" = "local" ]; then
     replace_tokens $build_dir/index.html 1
 else
