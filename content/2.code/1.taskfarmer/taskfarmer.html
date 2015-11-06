@@ -120,7 +120,7 @@ failed tasks up to a maximum number of attempts. The default number of retries i
 <p> Try the following:</p>
 
 <samp>
-$ shuf examples/commands.txt | head -n 100 > tasks.txt | mpirun -np 4 src/taskfarmer -f tasks.txt
+$ shuf examples/commands.txt | head -n 100 > tasks.txt | mpirun -np 4 taskfarmer -f tasks.txt
 </samp>
 
 <p> A collection of example <a href="http://en.wikipedia.org/wiki/Portable_Batch_System">PBS</a>
@@ -142,7 +142,7 @@ $ echo "Hello, I'm a task" > job.log
 <p>with TaskFarmer launched as follows:</p>
 
 <samp>
-$ mpirun -np 4 taskfarmer -f tasks.txt > sched.log
+$ mpirun -np 4 taskfarmer -f tasks.txt > tasks.log
 </samp>
 
 <p>
