@@ -201,6 +201,13 @@ perform_calculation > data.txt; analyze_data < data.txt
 </li>
 
 <li>
+    If you are using a <a href="http://www.beegfs.com">BeeGFS</a> parallel file system
+	(formerly FhGFS) then you'll need to set the client configuration variable
+	<code>tuneUseGlobalFileLocks = true</code> to enable file locking across multiple nodes.
+	(By default file locking only works locally on individual nodes.)
+</li>
+
+<li>
     Clusters that use InfiniBand interconnects can cause problems when using
     <code>fork()</code> in OpenMPI. A workaround can be achieved by disabling
     InfiniBand support for fork by setting the following (BASH style) environment variables:
