@@ -25,9 +25,10 @@ dependencies outside of the standard <a href="http://www.tug.org/texlive/">Tex L
 of LaTeXiT's key features: an equation library, and a reverse lookup feature to allow editing of existing equations.
 LaTuXiT works by hashing each equation string and building a library. Metadata written as comments in the output
 PDF and PostScript images allows LaTuXiT to match an image to an equation in the library. LaTuXiT has full RGB color
-support and also accepts any of the 68 standard colors known to dvips. Due to its command-line nature, LaTuXiT
-provides a handy way of processing many equations from a batch script. For more details on the workings of LaTuXiT,
-please visit its <a href="https:github.com/lohedges/latuxit">GitHub</a> page.
+support and also accepts any of the 68 standard colors known to dvips. Equations can be processed using several of
+the standard amsmath equation environments, and using custom LaTeX pre- and post-amble files. Due to its command-line
+nature, LaTuXiT provides a handy way of processing many equations from a batch script. For more details on the
+workings of LaTuXiT, please visit its <a href="https:github.com/lohedges/latuxit">GitHub</a> page.
 </p>
 
 <h2 class="top">Basic usage</h2>
@@ -37,7 +38,7 @@ Suppose we want a nice red image of the canonical partition function... here's a
 </p>
 
 <samp>
-$ latuxit -e "Z=\sum_s e^{\beta E_s}" -c "Red"
+$ latuxit -e 'Z=\sum_s e^{\beta E_s}' -c 'Red'
 </samp>
 
 <p>
@@ -58,7 +59,7 @@ equation in an editor where it can be corrected. Easy!
 <p>
 
 <samp>
-$ latuxit latuxit.pdf -c "{102,255,0}"
+$ latuxit latuxit.pdf -c '{102,255,0}'
 </samp>
 
 <p>
@@ -79,26 +80,21 @@ long and complicated so you don't really fancy attempting to type it out again. 
 </p>
 
 <p>
-Thankfully LaTuXiT offers a solution. As a starting point you could simply get LaTuXiT to list all of the equations
-in the library and use grep to look for matches.
+Thankfully LaTuXiT offers a solution. As a starting point you could simply run LaTuXiT in "search" mode
 </p>
 
 <samp>
-$ latuxit -l | grep "sin"<br>
-abade05b27e49e91c5873deabb8f82f2 "\cos^2 x +\sin^2 x = 1"<br>
-ee8ff71994abccb0897510910c944468 "\sin 2\theta = 2\sin \theta \cos \theta"
+$ latuxit -s 'sin'<br>
+<br>
+dabade05b27e49e91c5873deabb8f82f2<br>
+\cos^2 x +\sin^2 x = 1<br>
+<br>
+dee8ff71994abccb0897510910c944468<br>
+\sin 2\theta = 2\sin \theta \cos \theta
 </samp>
 
 <p>
-Note that this is equivalent to running LaTuXiT in "search" mode, i.e.
-</p>
-
-<samp>
-$ latuxit -s "sin"
-</samp>
-
-<p>
-The two column output shows a list of matching hashes from the library and the corresponding equations.
+The output shows a list of matching hashes from the library and the corresponding equations.
 Say the first match is the equation that we want. To reprocess it we can simply run LaTuXiT in <code>hash</code> mode.
 The hash string that is passed as a command-line argument should be long enough to ensure a unique match.
 LaTuXiT will abort if multiple matches are found. The equation will be opened in an editor so that it can be modified
@@ -106,7 +102,7 @@ prior to processing.
 </p>
 
 <samp>
-$ latuxit -m "abad"
+$ latuxit -m dabad
 </samp>
 
 <center>
