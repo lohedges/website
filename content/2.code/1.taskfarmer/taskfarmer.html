@@ -48,8 +48,8 @@ natively support Python shared libraries on their compute nodes.
 A <code>Makefile</code> is included for building and installing TaskFarmer. You will first
 need to make sure that you have <a href="http://www.open-mpi.org/">Open MPI</a> installed.
 If you use an alternative MPI implementation, such as <code>aprun</code> on the Cray Linux
-Environment (CLE), you will need to change the compiler in <code>config.mk</code> accordingly.
-You can also use <code>config.mk</code> to configure other options, such as the installation path.
+Environment (CLE), you will need to change the compiler variable <code>CC</code> in the
+<code>Makefile</code> or override the variable from the command line.
 </p>
 
 <p>
@@ -68,6 +68,14 @@ TaskFarmer can be completely removed from your system as follows:
 
 <samp>
 $ sudo make uninstall
+</samp>
+
+<p>
+To build TaskFarmer using a different compiler (e.g. Cray):
+</p>
+
+<samp>
+$ make CC=cc
 </samp>
 
 <h2 class="top">Usage</h2>
