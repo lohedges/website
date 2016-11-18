@@ -57,9 +57,9 @@ To compile TaskFarmer, then install the executable and man page:
 </p>
 
 <samp>
-$ make
+make
 <br>
-$ sudo make install
+sudo make install
 </samp>
 
 <p>
@@ -67,7 +67,7 @@ TaskFarmer can be completely removed from your system as follows:
 </p>
 
 <samp>
-$ sudo make uninstall
+sudo make uninstall
 </samp>
 
 <p>
@@ -75,13 +75,13 @@ To build TaskFarmer using a different compiler (e.g. Cray):
 </p>
 
 <samp>
-$ make CC=cc
+make CC=cc
 </samp>
 
 <h2 class="top">Usage</h2>
 
 <samp>
-    $ mpirun -np CORES taskfarmer [-h] -f FILE [-v] [-w] [-r] [-s SLEEP_TIME]<br>
+    mpirun -np CORES taskfarmer [-h] -f FILE [-v] [-w] [-r] [-s SLEEP_TIME]<br>
     &emsp;&emsp;[-m MAX_RETRIES]
 </samp>
 
@@ -128,7 +128,7 @@ failed tasks up to a maximum number of attempts. The default number of retries i
 <p> Try the following:</p>
 
 <samp>
-$ shuf examples/commands.txt | head -n 100 > tasks.txt | mpirun -np 4 taskfarmer -f tasks.txt
+shuf examples/commands.txt | head -n 100 > tasks.txt | mpirun -np 4 taskfarmer -f tasks.txt
 </samp>
 
 <p> A collection of example <a href="http://en.wikipedia.org/wiki/Portable_Batch_System">PBS</a>
@@ -144,13 +144,13 @@ itself. As an example, the <code>tasks.txt</code> file could contain a command l
 </p>
 
 <samp>
-$ echo "Hello, I'm a task" > job.log
+echo "Hello, I'm a task" > job.log
 </samp>
 
 <p>with TaskFarmer launched as follows:</p>
 
 <samp>
-$ mpirun -np 4 taskfarmer -f tasks.txt > tasks.log
+mpirun -np 4 taskfarmer -f tasks.txt > tasks.log
 </samp>
 
 <p>
@@ -224,6 +224,6 @@ perform_calculation > data.txt; analyze_data < data.txt
 </ul>
 
 <samp>
-    $ export OMPI_MCA_mpi_warn_on_fork=0<br>
-    $ export OMPI_MCA_btl_openib_want_fork_support=0
+    export OMPI_MCA_mpi_warn_on_fork=0<br>
+    export OMPI_MCA_btl_openib_want_fork_support=0
 </samp>
