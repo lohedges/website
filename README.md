@@ -1,6 +1,6 @@
 # lesterhedges.net
 
-Copyright &copy; 2013-2015 Lester Hedges.
+Copyright &copy; 2013-2016 Lester Hedges.
 
 Released under the [GPL](http://www.gnu.org/copyleft/gpl.html).
 
@@ -61,10 +61,10 @@ files for the page (scripts, images, etc.).
 
 ## Usage
 The `makesite` script can be used to build the static webpages for deployment
-on both the `local` or `remote` hosts specified in the configuration file.
+on both the `local` or `remote` hosts specified in the configuration file, e.g.
 
 ``` sh
-	./makesite local|remote
+./makesite remote
 ```
 
 The resulting website can be found in the `build/local`, or `build/remote`
