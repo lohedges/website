@@ -1,6 +1,6 @@
 # lesterhedges.net
 
-Copyright &copy; 2013-2016 Lester Hedges.
+Copyright &copy; 2013-2017 Lester Hedges.
 
 Released under the [GPL](http://www.gnu.org/copyleft/gpl.html).
 
