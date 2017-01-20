@@ -344,7 +344,7 @@ table.gimage {
     width: 200px; height: 200px;
     overflow: hidden;
     /*box-shadow: 7px 7px 3px #404040;*/
-    margin: 5px; padding: 5px 5px 5px 5px;
+    margin: 2px; padding: 2px 2px 2px 2px;
     float: right;
     transition: all 0.5s;
     -moz-transition: all 0.5s;
