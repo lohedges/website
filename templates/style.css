@@ -154,6 +154,9 @@ hr {
 }
 
 #content .restext {
+    color: #000;
+    font: normal 14px "Poly";
+    line-height: 1.4em;
     display: inline;
     float: left;
     width: 420px;
