@@ -1,5 +1,6 @@
 body {
     background: #fff url('images/fabric.png');
+    min-height: 100vh;
 }
 
 p, li {
