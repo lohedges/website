@@ -34,7 +34,7 @@ elif [[ "$1" != "local" && "$1" != "remote" ]]; then
 fi
 
 # Define defaults.
-local_host="http://localhost/~lester/"
+local_host="http://localhost:8888/"
 remote_host="https://lesterhedges.net/"
 font='https://fonts.googleapis.com/css?family=Poly:400,400italic|Bitter:700'
 
